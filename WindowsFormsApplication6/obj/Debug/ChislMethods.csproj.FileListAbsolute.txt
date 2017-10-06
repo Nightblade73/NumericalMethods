@@ -1,0 +1,3 @@
+C:\Users\ASH\Documents\Visual Studio 2015\WindowsFormsApplication6\WindowsFormsApplication6\bin\Debug\WindowsFormsApplication6.exe.config
+C:\Users\ASH\Documents\Visual Studio 2015\WindowsFormsApplication6\WindowsFormsApplication6\obj\Debug\WindowsFormsApplication6.exe
+C:\Users\ASH\Documents\Visual Studio 2015\WindowsFormsApplication6\WindowsFormsApplication6\obj\Debug\WindowsFormsApplication6.pdb
