@@ -14,7 +14,7 @@ namespace WindowsFormsApplication6
                         { 3, 8, 1, 1 },
                         { 2, 5, 0, 5 }};
         double[,] UL;
-
+        int[] q;
         public double[,] AGetter
         {
             get { return A; }
@@ -29,6 +29,7 @@ namespace WindowsFormsApplication6
             Random temp = new Random();
 
             A = new double[n, n];
+
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
@@ -48,16 +49,45 @@ namespace WindowsFormsApplication6
         public string Factorization()
         {
             Clone();
+            q = new int[n];
+            for (int i = 0; i < n; i++) {
+                q[i] = i;
+            }
+
             for (int k = n - 1; k >= 0; k--)
             {
+                ChangeRows(k);
                 for (int j = k - 1; j >= 0; j--)
-                    UL[k, j] = UL[k, j] / UL[k, k];
+                    UL[q[k], j] = UL[q[k], j] / UL[q[k], k];
                 for (int i = k - 1; i >= 0; i--)
                     for (int j = k - 1; j >= 0; j--)
-                        UL[i, j] = UL[i, j] - UL[i, k] * UL[k, j];
+                        UL[q[i], j] = UL[q[i], j] - UL[q[i], k] * UL[q[k], j];
             }
             return Result();
         }
+
+        public void ChangeRows(int k) {
+            int imax = 0;
+            int jmax = 0;
+            int buf = 0;
+            
+            imax = k;
+            jmax = k;
+            for (int i = k; i < n; i++)
+               
+                    if (Math.Abs(A[q[i], k]) > Math.Abs(A[q[imax], k]))
+                    {
+                        imax = i;
+                        
+                    }
+            // Обмен
+            
+            if (imax != k)
+            {
+                buf = q[k];
+                q[k] = q[imax];
+                q[imax] = buf;
+            }        }
 
         public string Result()
         {
@@ -110,7 +140,7 @@ namespace WindowsFormsApplication6
        public string HelperSolve(double[,] luMatrix, double[] b)
         {
             // Решаем luMatrix * x = b
-           
+            n = luMatrix.GetLength(0);
             string s = "";
             double[] x = new double[n];
             b.CopyTo(x, 0);
