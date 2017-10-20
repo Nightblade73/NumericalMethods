@@ -35,6 +35,7 @@
             this.butSelectMainElement = new System.Windows.Forms.Button();
             this.butFact = new System.Windows.Forms.Button();
             this.zadanie = new System.Windows.Forms.Label();
+            this.butProcDet = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,11 +106,22 @@
             this.zadanie.Text = "7. LU -разложение на основе\r\nгауссова исключения по \r\nстрокам с выбором \r\nглавног" +
     "о элемента по строке";
             // 
+            // butProcDet
+            // 
+            this.butProcDet.Location = new System.Drawing.Point(460, 174);
+            this.butProcDet.Name = "butProcDet";
+            this.butProcDet.Size = new System.Drawing.Size(138, 67);
+            this.butProcDet.TabIndex = 5;
+            this.butProcDet.Text = "Подсчитать определитель";
+            this.butProcDet.UseVisualStyleBackColor = true;
+            this.butProcDet.Click += new System.EventHandler(this.butProcDet_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 446);
+            this.Controls.Add(this.butProcDet);
             this.Controls.Add(this.zadanie);
             this.Controls.Add(this.butFact);
             this.Controls.Add(this.butSelectMainElement);
@@ -134,6 +146,7 @@
         private System.Windows.Forms.Button butFact;
         private System.Windows.Forms.ToolStripMenuItem очиститьОкноToolStripMenuItem;
         private System.Windows.Forms.Label zadanie;
+        private System.Windows.Forms.Button butProcDet;
     }
 }
 

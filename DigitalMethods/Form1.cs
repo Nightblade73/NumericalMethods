@@ -12,6 +12,10 @@ namespace DigitalMethods
 {
     public partial class Form1 : Form
     {
+        double[,] A = { { 2, 4, -4, 6 },
+                     { 1, 4, 2, 1 },
+                     { 3, 8, 1, 1 },
+                     { 2, 5, 0, 5 }};
         public Form1()
         {
             InitializeComponent();
@@ -19,17 +23,15 @@ namespace DigitalMethods
             {
                 q[i] = i;
             }
-            tBResults.Text = ArrayToString();
+            tBResults.Text = Processing.ArrayToString(A);
 
         }
+
         int k = 0;
         int[] q = new int[n];
         static int n = 4;
         //   int[,] A = new int[n, n];
-        double[,] A = { { 2, 4, -4, 6 },
-                     { 1, 4, 2, 1 },
-                     { 3, 8, 1, 1 },
-                     { 2, 5, 0, 5 }};
+        
         private bool key = false;
 
         private void butSelectMainElement_Click(object sender, EventArgs e)
@@ -97,28 +99,7 @@ namespace DigitalMethods
                 q[jmax] = buf;
             }
         }
-        public string ArrayToString()
-        {
-            string result = "";
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    result += Math.Round(A[i, j], 3) + "\t";
-                }
-                result += "\r\n";
-            }
-            if (key)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    result += q[i] + "\t";
-                }
-                result += "\r\n";
-            }
-
-            return result + "\r\n";
-        }
+        
 
         private void butFact_Click(object sender, EventArgs e)
         {
@@ -154,9 +135,10 @@ namespace DigitalMethods
                     for (int j = k + 1; j < n; j++)
                         A[i, j] = A[i, j] - A[i, k] * A[k, j];
                 }
+                // выбор главного элеменета по k-й строке
                 for (int j = i + 1; j < n; j++)
                     A[i, j] = A[i, j] / A[i, i];
-                tBResults.Text += ArrayToString();
+            //    tBResults.Text += ArrayToString();
             }
         }
 
@@ -176,7 +158,7 @@ namespace DigitalMethods
             {
                 q[i] = i;
             }
-            tBResults.Text += ArrayToString();
+     //       tBResults.Text += ArrayToString();
         }
 
         private void очиститьОкноToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,6 +168,11 @@ namespace DigitalMethods
             {
                 q[i] = i;
             }
+        }
+
+        private void butProcDet_Click(object sender, EventArgs e)
+        {
+            tBResults.Text += Processing.Determ(A)+"\r\n";
         }
     }
 }
