@@ -40,5 +40,11 @@ namespace WindowsFormsApplication6
             textBox1.Text += cm.Factorization();
 
         }
+        double[] b = { 1, 2, 3, 4 };
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += ("detA = " + cm.Determ(cm.AGetter));
+            textBox1.Text += (cm.HelperSolve(cm.ULGetter, b));
+        }
     }
 }
