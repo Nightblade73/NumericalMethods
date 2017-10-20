@@ -147,15 +147,15 @@ namespace DigitalMethods
             //            A[i, j] = A[i, j] - A[i, k] * A[k, j];
             //    tBResults.Text += ArrayToString();
             //}
-            for (int k = 0; k < n - 1; k++)
-            {
-                if (key)
-                    ChangeColumns(k);
-                for (int j = k + 1; j < n; j++)
-                    A[k, q[j]] = A[k, q[j]] / A[k, q[k]];
-                for (int i = k + 1; i < n; i++)
+            for (int i = 0; i < n; i++)
+            {                
+                for (int k = 0; k < i; k++)
+                {               
                     for (int j = k + 1; j < n; j++)
-                        A[i, q[j]] = A[i, q[j]] - A[i, q[k]] * A[k, q[j]];
+                        A[i, j] = A[i, j] - A[i, k] * A[k, j];
+                }
+                for (int j = i + 1; j < n; j++)
+                    A[i, j] = A[i, j] / A[i, i];
                 tBResults.Text += ArrayToString();
             }
         }

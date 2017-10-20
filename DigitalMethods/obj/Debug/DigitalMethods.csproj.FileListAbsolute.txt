@@ -7,3 +7,12 @@ c:\users\1\documents\visual studio 2015\Projects\DigitalMethods\DigitalMethods\o
 c:\users\1\documents\visual studio 2015\Projects\DigitalMethods\DigitalMethods\obj\Debug\DigitalMethods.csproj.GenerateResource.Cache
 c:\users\1\documents\visual studio 2015\Projects\DigitalMethods\DigitalMethods\obj\Debug\DigitalMethods.exe
 c:\users\1\documents\visual studio 2015\Projects\DigitalMethods\DigitalMethods\obj\Debug\DigitalMethods.pdb
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\bin\Debug\DigitalMethods.exe.config
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.exe
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.pdb
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\bin\Debug\DigitalMethods.exe
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\bin\Debug\DigitalMethods.pdb
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.csprojResolveAssemblyReference.cache
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.Form1.resources
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.Properties.Resources.resources
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.csproj.GenerateResource.Cache
