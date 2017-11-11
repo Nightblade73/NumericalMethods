@@ -34,8 +34,6 @@
             this.tBResults = new System.Windows.Forms.TextBox();
             this.butFact = new System.Windows.Forms.Button();
             this.zadanie = new System.Windows.Forms.Label();
-            this.butProcDet = new System.Windows.Forms.Button();
-            this.butFindAnswer = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,12 +70,12 @@
             this.tBResults.Multiline = true;
             this.tBResults.Name = "tBResults";
             this.tBResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tBResults.Size = new System.Drawing.Size(442, 407);
+            this.tBResults.Size = new System.Drawing.Size(676, 407);
             this.tBResults.TabIndex = 1;
             // 
             // butFact
             // 
-            this.butFact.Location = new System.Drawing.Point(156, 514);
+            this.butFact.Location = new System.Drawing.Point(12, 514);
             this.butFact.Name = "butFact";
             this.butFact.Size = new System.Drawing.Size(138, 67);
             this.butFact.TabIndex = 3;
@@ -89,39 +87,18 @@
             // 
             this.zadanie.AutoSize = true;
             this.zadanie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zadanie.Location = new System.Drawing.Point(522, 149);
+            this.zadanie.Location = new System.Drawing.Point(740, 210);
             this.zadanie.Name = "zadanie";
             this.zadanie.Size = new System.Drawing.Size(215, 72);
             this.zadanie.TabIndex = 4;
             this.zadanie.Text = "7. LU -разложение на основе\r\nгауссова исключения по \r\nстрокам с выбором \r\nглавног" +
     "о элемента по строке";
             // 
-            // butProcDet
-            // 
-            this.butProcDet.Location = new System.Drawing.Point(12, 514);
-            this.butProcDet.Name = "butProcDet";
-            this.butProcDet.Size = new System.Drawing.Size(138, 67);
-            this.butProcDet.TabIndex = 5;
-            this.butProcDet.Text = "Подсчитать определитель";
-            this.butProcDet.UseVisualStyleBackColor = true;
-            this.butProcDet.Click += new System.EventHandler(this.butProcDet_Click);
-            // 
-            // butFindAnswer
-            // 
-            this.butFindAnswer.Location = new System.Drawing.Point(300, 514);
-            this.butFindAnswer.Name = "butFindAnswer";
-            this.butFindAnswer.Size = new System.Drawing.Size(138, 67);
-            this.butFindAnswer.TabIndex = 6;
-            this.butFindAnswer.Text = "Найти решение СЛАУ";
-            this.butFindAnswer.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 753);
-            this.Controls.Add(this.butFindAnswer);
-            this.Controls.Add(this.butProcDet);
             this.Controls.Add(this.zadanie);
             this.Controls.Add(this.butFact);
             this.Controls.Add(this.tBResults);
@@ -144,8 +121,6 @@
         private System.Windows.Forms.Button butFact;
         private System.Windows.Forms.ToolStripMenuItem очиститьОкноToolStripMenuItem;
         private System.Windows.Forms.Label zadanie;
-        private System.Windows.Forms.Button butProcDet;
-        private System.Windows.Forms.Button butFindAnswer;
     }
 }
 

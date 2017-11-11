@@ -12,6 +12,7 @@ namespace DigitalMethods
                      { 1.0, 4.0, 2.0, 1.0 },
                      { 3.0, 8.0, 1.0, 1.0 },
                      { 2.0, 5.0, 0.0, 5.0 }};
+        double[,] aInver;
         double[,] lu;
         double[] x;
         double[] b;
@@ -30,7 +31,7 @@ namespace DigitalMethods
             for (int i = 0; i < n; i++)
             {
                 q[i] = i;
-                x[i] = Convert.ToDouble(i + 1.0);
+                x[i] = i + 1.0;
             }
         }
 
@@ -38,6 +39,12 @@ namespace DigitalMethods
         {
             get { return a; }
             set { a = value; }
+        }
+
+        public double[,] AInver
+        {
+            get { return aInver; }
+            set { aInver = value; }
         }
 
         public int[] Q

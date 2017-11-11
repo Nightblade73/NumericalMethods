@@ -69,7 +69,7 @@ namespace DigitalMethods
                         det *= LUmatrix[i, prem[j]];
                 }
             }
-            return det;
+            return Math.Abs(det);
         }
         /// <summary>
         /// Вычисление вектора столбца W из матрицы L и вектора столбца B
@@ -185,6 +185,38 @@ namespace DigitalMethods
             return result;
         }
 
+        public static double[,] Inversion(double[,] Lmatrix, double[,] Umatrix, int[] prem)
+        {
+            double[,] result = new double[Lmatrix.GetLength(0), Lmatrix.GetLength(0)];
+            for (int i = 0; i < result.GetLength(0); i++)
+            {
+                double[] I = new double[result.GetLength(0)];
+                I[i] = 1;
+                double[] x = FindMatrixX(Umatrix, FindMatrixW(Lmatrix, I, prem), prem);
+                for (int j = 0; j < result.GetLength(0); j++)
+                {
+                    result[j, i] = x[j];
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// Вычисление погрешности между начальным вектором X и получившимся вектором X
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="XReady"></param>
+        /// <returns></returns>
+        public static double DeltaMax(double[] X, double[] XReady)
+        {
+            double max = 0;
+            for (int i = 0; i < X.GetLength(0); i++)
+            {
+                if (Math.Abs(X[i] - XReady[i]) > max)
+                    max = Math.Abs(X[i] - XReady[i]);
+            }
+            return max;
+        }
+
         public static string ArrayToString(double[,] matrix)
         {
             string result = "";
@@ -192,7 +224,8 @@ namespace DigitalMethods
             {
                 for (int j = 0; j < matrix.GetLength(0); j++)
                 {
-                    result += Math.Round(matrix[i, j], 3) + "\t";
+                    result += string.Format("{0,20:0.###}", matrix[i, j]) + "\t";
+                    //    result += Math.Round(matrix[i, j], 3) + "\t";
                 }
                 result += "\r\n";
             }
@@ -204,7 +237,8 @@ namespace DigitalMethods
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
             {
-                result += Math.Round(vector[i], 3) + "\t";
+                result += string.Format("{0,10:0.###}", vector[i]) + "\t";
+                //  result += Math.Round(vector[i], 7) + "\t";
             }
             return result + "\r\n\r\n";
         }
