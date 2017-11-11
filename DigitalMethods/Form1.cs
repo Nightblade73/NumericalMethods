@@ -38,7 +38,7 @@ namespace DigitalMethods
             data.XReady = Processing.FindMatrixX(u, w, data.Q);
             tBResults.Text += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
             tBResults.Text += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
-            tBResults.Text += "Детерминант:" + Processing.Determ(data.LU, data.Q) + "\r\n";
+            tBResults.Text += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
         }
 
         private void генерацияToolStripMenuItem_Click(object sender, EventArgs e)

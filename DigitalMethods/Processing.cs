@@ -60,13 +60,13 @@ namespace DigitalMethods
         /// <returns></returns>
         public static double Determ(double[,] LUmatrix, int[] prem)
         {
-            double det = 0;
+            double det = 1;
             for (int i = 0; i < LUmatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < LUmatrix.GetLength(1); j++)
                 {
                     if (i == j)
-                        det += LUmatrix[i, prem[j]];
+                        det *= LUmatrix[i, prem[j]];
                 }
             }
             return det;
