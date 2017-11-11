@@ -12,167 +12,58 @@ namespace DigitalMethods
 {
     public partial class Form1 : Form
     {
-        double[,] A = { { 2, 4, -4, 6 },
-                     { 1, 4, 2, 1 },
-                     { 3, 8, 1, 1 },
-                     { 2, 5, 0, 5 }};
+        Data data = new Data();
+
+        double[] x = { 1, 2, 3, 4 };
         public Form1()
         {
             InitializeComponent();
-            for (int i = 0; i < n; i++)
-            {
-                q[i] = i;
-            }
-            tBResults.Text = Processing.ArrayToString(A);
-
+            tBResults.Text = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
         }
-
-        int k = 0;
-        int[] q = new int[n];
-        static int n = 4;
-        //   int[,] A = new int[n, n];
-        
-        private bool key = false;
-
-        private void butSelectMainElement_Click(object sender, EventArgs e)
-        {
-            key = true;
-            //// Массивы перестановок: p - массив номеров строк, // q - массив номеров столбцов 
-            ////       int[] p = new int[n];
-            //int[] q = new int[n];
-            ////вспомогательные переменные 
-            ////   int imax = 0;
-            //int jmax = 0;
-            //int buf = 0; // Заполняем массивы перестановок начальными значениями 
-            //// перед началом факторизации
-
-            //for (int i = 0; i < n; i++)
-            //{
-            //    //         p[i] = i;
-            //    q[i] = i;
-            //} // Этот фрагмент вставляем в алгоритм факторизации 
-            //  // n - размер задачи, k - номер текущего шага алгоритма 
-            //  //    imax = k;
-            //jmax = k;
-            //for (int i = k; i < n; i++)
-            //    for (int j = k; j < n; j++)
-            //        if (Math.Abs(A[i, q[j]]) > Math.Abs(A[i, q[jmax]]))
-            //        {
-            //            //  imax = i;
-            //            jmax = j;
-            //        }
-            //// Обмен 
-            ////if (imax != k)
-            ////{
-            ////    buf = p[k];
-            ////    p[k] = p[imax];
-            ////    p[imax] = buf;
-            ////}
-            //if (jmax != k)
-            //{
-            //    buf = q[k];
-            //    q[k] = q[jmax];
-            //    q[jmax] = buf;
-            //}
-            //tBResults.Text += ArrayToString();
-        }
-        public void ChangeColumns(int k)
-        {
-            //вспомогательные переменные 
-            int jmax = 0;
-            int buf = 0; // Заполняем массивы перестановок начальными значениями 
-            // перед началом факторизации
-
-
-            // Этот фрагмент вставляем в алгоритм факторизации 
-            // n - размер задачи, k - номер текущего шага алгоритма 
-            jmax = k;
-            for (int j = k; j < n; j++)
-                if (Math.Abs(A[k, q[j]]) > Math.Abs(A[k, q[jmax]]))
-                {
-                    jmax = j;
-                }
-            if (jmax != k)
-            {
-                buf = q[k];
-                q[k] = q[jmax];
-                q[jmax] = buf;
-            }
-        }
-        
 
         private void butFact_Click(object sender, EventArgs e)
         {
-            //for (int j = k; j < n; j++)
-            //    A[k, j] = A[k, j] / A[k, k];
-            //for (int i = k + 1; i < n; i++)
-            //    for (int j = k; j < n; j++)
-            //        A[i, j] = A[i, j] - A[i, k] * A[k, j];
-
-            //for (int k = 0; k < n; k++)
-            //{
-            //    for (int i = k + 1; i < n; i++)
-            //        A[i, k] = A[i, k] / A[k, k];
-            //    for (int j = k + 1; j < n; j++)
-            //        for (int i = k + 1; i < n; i++)
-            //            A[i, j] = A[i, j] - A[k, j] * A[i, k];
-            //    tBResults.Text += ArrayToString();
-            //}
-
-            //for (int k = 0; k < n - 1; k++)
-            //{
-            //    for (int j = k + 1; j < n; j++)
-            //        A[k, j] = A[k, ]] / A[k, k];
-            //    for (int i = k + 1; i < n; i++)
-            //        for (int j = k + 1; j < n; j++)
-            //            A[i, j] = A[i, j] - A[i, k] * A[k, j];
-            //    tBResults.Text += ArrayToString();
-            //}
-            for (int i = 0; i < n; i++)
-            {                
-                for (int k = 0; k < i; k++)
-                {               
-                    for (int j = k + 1; j < n; j++)
-                        A[i, j] = A[i, j] - A[i, k] * A[k, j];
-                }
-                // выбор главного элеменета по k-й строке
-                for (int j = i + 1; j < n; j++)
-                    A[i, j] = A[i, j] / A[i, i];
-            //    tBResults.Text += ArrayToString();
-            }
+            int[] q = data.Q;
+            data.LU = Processing.LUrzl(data.A, ref q);
+            tBResults.Text += "Получивщаяся матрица:\r\n" + Processing.ArrayToString(data.LU);          
+            data.Q = q;
+            tBResults.Text += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
+            double[] b = Processing.MatrixProduct(data.A, data.X, data.Q);
+            data.B = b;
+            double[,] l = data.L;
+            double[,] u = data.U;
+            Processing.Division(data.LU, out l, out u, data.Q);
+            double[] w = Processing.FindMatrixW(l, b, data.Q);
+            data.W = w;
+            data.XReady = Processing.FindMatrixX(u, w, data.Q);
+            tBResults.Text += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
+            tBResults.Text += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
+            tBResults.Text += "Детерминант:" + Processing.Determ(data.LU, data.Q) + "\r\n";
         }
 
         private void генерацияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //   string result = "";
-            Random r = new Random();
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    A[i, j] = (r.NextDouble() * 2 - 1) * 100;
-                }
-                //      result += "\r\n";
-            }
-            for (int i = 0; i < n; i++)
-            {
-                q[i] = i;
-            }
-     //       tBResults.Text += ArrayToString();
+            //       //   string result = "";
+            //       Random r = new Random();
+            //       for (int i = 0; i < n; i++)
+            //       {
+            //           for (int j = 0; j < n; j++)
+            //           {
+            //               A[i, j] = (r.NextDouble() * 2 - 1) * 100;
+            //           }
+            //           //      result += "\r\n";
+            //       }
+            ////       tBResults.Text += ArrayToString();
         }
 
         private void очиститьОкноToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tBResults.Clear();
-            for (int i = 0; i < n; i++)
-            {
-                q[i] = i;
-            }
         }
 
         private void butProcDet_Click(object sender, EventArgs e)
         {
-            tBResults.Text += Processing.Determ(A)+"\r\n";
+            tBResults.Text += Processing.Determ(data.A, data.Q) + "\r\n";
         }
     }
 }
