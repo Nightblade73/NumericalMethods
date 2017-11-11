@@ -30,9 +30,10 @@ namespace DigitalMethods
             tBResults.Text += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
             double[] b = Processing.MatrixProduct(data.A, data.X, data.Q);
             data.B = b;
-            double[,] l = data.L;
-            double[,] u = data.U;
+            double[,] l, u;
             Processing.Division(data.LU, out l, out u, data.Q);
+            data.L = l;
+            data.U = u;
             double[] w = Processing.FindMatrixW(l, b, data.Q);
             data.W = w;
             data.XReady = Processing.FindMatrixX(u, w, data.Q);

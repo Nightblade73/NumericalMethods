@@ -134,8 +134,6 @@ namespace DigitalMethods
         {
             int aRows = matrixA.GetLength(0); int aCols = matrixA.GetLength(0);
             int bRows = matrixB.Length;
-            if (aCols != bRows)
-                throw new Exception("Non-conformable matrices in MatrixProduct");
             double[] result = new double[aRows];
             for (int i = 0; i < aRows; ++i) // каждая строка A
                 for (int k = 0; k < aCols; ++k)
@@ -248,7 +246,7 @@ namespace DigitalMethods
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
             {
-                result += vector[i] + "\t";
+                result += string.Format("{0,10:0.###}", vector[i]) + "\t";
             }
             return result + "\r\n\r\n";
         }
