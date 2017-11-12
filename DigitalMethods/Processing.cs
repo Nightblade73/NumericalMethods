@@ -130,14 +130,35 @@ namespace DigitalMethods
         /// <param name="matrixA">Квадратная матрица</param>
         /// <param name="matrixB">Вектор столбец</param>
         /// <returns></returns>
-        public static double[] MatrixProduct(double[,] matrixA, double[] matrixB, int[] prem)
+        public static double[] MatrixProduct(double[,] matrixA, double[] matrixB)
         {
             int aRows = matrixA.GetLength(0); int aCols = matrixA.GetLength(0);
             int bRows = matrixB.Length;
             double[] result = new double[aRows];
             for (int i = 0; i < aRows; ++i) // каждая строка A
                 for (int k = 0; k < aCols; ++k)
-                    result[i] += matrixA[i, prem[k]] * matrixB[k];
+                    result[i] += matrixA[i, k] * matrixB[k];
+            return result;
+        }
+        /// <summary>
+        /// Произведение квадратной матрицы А на квадратную матрицу B
+        /// </summary>
+        /// <param name="matrixA">Квадратная матрица</param>
+        /// <param name="matrixB">Вектор столбец</param>
+        /// <returns></returns>
+        public static double[,] MatrixProduct(double[,] matrixA, double[,] matrixB, int[] prem)
+        {
+            int aRows = matrixA.GetLength(0);
+            int aCols = matrixA.GetLength(1);
+            int bRows = matrixB.GetLength(0);
+            int bCols = matrixB.GetLength(1);
+            if (aCols != bRows)
+                throw new Exception("Non-conformable matrices in MatrixProduct");
+            double[,] result = new double[aRows, aRows];
+            for (int i = 0; i < aRows; i++) // каждая строка A
+                for (int j = 0; j < bCols; j++) // каждый столбец B
+                    for (int k = 0; k < aCols; k++)
+                        result[i, j] += matrixA[i, prem[k]] * matrixB[k, prem[j]];
             return result;
         }
         /// <summary>
@@ -159,12 +180,11 @@ namespace DigitalMethods
                     }
                     else if (i > j)
                     {
-
                         Lmatrix[i, prem[j]] = LUmatrix[i, prem[j]];
                     }
                     else
                     {
-                        Umatrix[i, prem[j]] = 1;
+                        Umatrix[i, prem[j]] = LUmatrix[i, prem[j]] / LUmatrix[i, prem[j]];
                         Lmatrix[i, prem[j]] = LUmatrix[i, prem[j]];
                     }
                 }
@@ -177,26 +197,58 @@ namespace DigitalMethods
         public static double[,] MatrixDuplicate(double[,] matrix)
         {
             double[,] result = (double[,])matrix.Clone();
-            //for (int i = 0; i < matrix.GetLength(0); ++i) // Копирование значений
-            //    for (int j = 0; j < matrix.GetLength(1); ++j)
-            //        result[i,j] = matrix[i,j];
             return result;
         }
-
-        public static double[,] Inversion(double[,] Lmatrix, double[,] Umatrix, int[] prem)
+        /// <summary>
+        /// Клонирует столбец входной матрицы по номеру.
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static double[] MatrixDuplicate(double[,] matrix, int j)
+        {
+            double[] result = new double[matrix.GetLength(1)];
+            for (int i = 0; i < matrix.GetLength(1); i++)
+                result[i] = matrix[i, j];
+            return result;
+        }
+        /// <summary>
+        /// Возвращает обратную матрицу
+        /// </summary>
+        /// <param name="Lmatrix"></param>
+        /// <param name="Umatrix"></param>
+        /// <param name="prem"></param>
+        /// <returns></returns>
+        public static double[,] Inversion(double[,] Lmatrix, double[,] Umatrix, double[,] Imatrix, int[] prem)
         {
             double[,] result = new double[Lmatrix.GetLength(0), Lmatrix.GetLength(0)];
-            for (int i = 0; i < result.GetLength(0); i++)
+            for (int j = 0; j < result.GetLength(0); j++)
             {
-                double[] I = new double[result.GetLength(0)];
-                I[i] = 1;
+                double[] I = MatrixDuplicate(Imatrix, j);
                 double[] x = FindMatrixX(Umatrix, FindMatrixW(Lmatrix, I, prem), prem);
-                for (int j = 0; j < result.GetLength(0); j++)
+                for (int i = 0; i < result.GetLength(0); i++)
                 {
-                    result[j, i] = x[j];
+                    result[i, prem[j]] = x[i];
                 }
             }
             return result;
+        }
+        /// <summary>
+        /// Поиск нормы в матрице
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        private static double FindMax(double[,] matrix)
+        {
+            double max = matrix[0, 0];
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (Math.Abs(matrix[i, j]) > max)
+                        max = Math.Abs(Math.Abs(matrix[i, j]));
+                }
+            }
+            return max;
         }
         /// <summary>
         /// Вычисление погрешности между начальным вектором X и получившимся вектором X
@@ -204,15 +256,29 @@ namespace DigitalMethods
         /// <param name="X"></param>
         /// <param name="XReady"></param>
         /// <returns></returns>
-        public static double DeltaMax(double[] X, double[] XReady)
+        public static double DeltaMax(double[] X, double[] XReady, int[] prem)
         {
             double max = 0;
             for (int i = 0; i < X.GetLength(0); i++)
             {
-                if (Math.Abs(X[i] - XReady[i]) > max)
-                    max = Math.Abs(X[i] - XReady[i]);
+                if (Math.Abs(X[i] - XReady[prem[i]]) > max)
+                    max = Math.Abs(X[i] - XReady[prem[i]]);
             }
             return max;
+        }
+
+        public static double DeltaMax(double[,] Amatrix, double[,] AImatrix, double[,] Imatrix, int[] prem)
+        {
+            double[,] Iproduct = MatrixProduct(Amatrix, AImatrix, prem);
+            double[,] IDelta = new double[Amatrix.GetLength(0), Amatrix.GetLength(0)];
+            for (int i = 0; i < Amatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < Amatrix.GetLength(0); j++)
+                {
+                    IDelta[i, j] = Imatrix[i, j] - IDelta[i, j];
+                }
+            }
+            return FindMax(IDelta) / FindMax(Amatrix);
         }
 
         public static string ArrayToString(double[,] matrix)
@@ -235,8 +301,8 @@ namespace DigitalMethods
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
             {
-                result += string.Format("{0,10:0.###}", vector[i]) + "\t";
-                //  result += Math.Round(vector[i], 7) + "\t";
+                //result += string.Format("{0,10:0.###}", vector[i]) + "\t";
+                result += vector[i] + "\t";
             }
             return result + "\r\n\r\n";
         }
@@ -246,7 +312,7 @@ namespace DigitalMethods
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
             {
-                result += string.Format("{0,10:0.###}", vector[i]) + "\t";
+                result += vector[i] + "\t";
             }
             return result + "\r\n\r\n";
         }

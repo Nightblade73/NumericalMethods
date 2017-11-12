@@ -22,16 +22,19 @@ namespace DigitalMethods
         int[] q;
         double[,] l;
         double[,] u;
+        double[,] i;
 
         public Data()
         {
             q = new int[n];
             x = new double[n];
             XReady = new double[n];
+            i = new double[n, n];
             for (int i = 0; i < n; i++)
             {
                 q[i] = i;
                 x[i] = i + 1.0;
+                this.i[i, i] = 1;
             }
         }
 
@@ -93,6 +96,12 @@ namespace DigitalMethods
         {
             get { return xReady; }
             set { xReady = value; }
+        }
+
+        public double[,] I
+        {
+            get { return i; }
+            set { i = value; }
         }
     }
 }

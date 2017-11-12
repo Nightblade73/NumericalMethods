@@ -28,7 +28,7 @@ namespace DigitalMethods
             tBResults.Text += "Получивщаяся матрица:\r\n" + Processing.ArrayToString(data.LU);
             data.Q = q;
             tBResults.Text += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
-            double[] b = Processing.MatrixProduct(data.A, data.X, data.Q);
+            double[] b = Processing.MatrixProduct(data.A, data.X);
             data.B = b;
             double[,] l, u;
             Processing.Division(data.LU, out l, out u, data.Q);
@@ -40,9 +40,12 @@ namespace DigitalMethods
             tBResults.Text += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
             tBResults.Text += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
             tBResults.Text += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
-            tBResults.Text += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady)) + "\r\n";
-            data.AInver = Processing.Inversion(data.L, data.U, data.Q);
+            tBResults.Text += "Погрешность X: " + Processing.DeltaMax(data.X, data.XReady, data.Q) + "\r\n";
+            //   tBResults.Text += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady)) + "\r\n";
+            data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
             tBResults.Text += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
+            tBResults.Text += "Погрешность для обратной матрицы: " + Processing.DeltaMax(data.A, Processing.MatrixProduct(data.A, data.AInver, data.Q), data.I, data.Q);
+
         }
 
         private void генерацияToolStripMenuItem_Click(object sender, EventArgs e)
