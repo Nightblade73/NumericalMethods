@@ -258,11 +258,11 @@ namespace DigitalMethods
         /// <returns></returns>
         public static double DeltaMax(double[] X, double[] XReady, int[] prem)
         {
-            double max = 0;
-            for (int i = 0; i < X.GetLength(0); i++)
+            double max = Math.Abs(X[prem[0]] - XReady[0]);
+            for (int i = 1; i < X.GetLength(0); i++)
             {
-                if (Math.Abs(X[i] - XReady[prem[i]]) > max)
-                    max = Math.Abs(X[i] - XReady[prem[i]]);
+                if (Math.Abs(X[prem[i]] - XReady[i]) > max)
+                    max = Math.Abs(X[prem[i]] - XReady[i]);
             }
             return max;
         }
@@ -323,7 +323,7 @@ namespace DigitalMethods
             }
             return result + "\r\n\r\n";
         }
-        public static string DoChislMethod(Data data)
+        public static string DoChislMethod(ref Data data)
         {
             string result = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
             int[] q = data.Q;
@@ -343,10 +343,13 @@ namespace DigitalMethods
             result += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
             result += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
             result += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
-            result += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady, data.Q)) + "\r\n";
+            data.ErrorX = DeltaMax(data.X, data.XReady, data.Q);
+            //  result += "Погрешность X: " + string.Format("{0,10:0.##E-0}", data.ErrorX) + "\r\n";
+            result += "Погрешность X: " + data.ErrorX + "\r\n";
             data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
             result += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
-            result += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.A, data.AInver, data.I, data.Q)) + "\r\n";
+            data.ErrorI = DeltaMax(data.A, data.AInver, data.I, data.Q);
+            result += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.##E-0}", data.ErrorI) + "\r\n";
             return result;
         }
     }

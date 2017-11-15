@@ -18,14 +18,24 @@ namespace DigitalMethods
         double[] b;
         double[] w;
         double[] xReady;
-        int n = 4;
         int[] q;
         double[,] l;
         double[,] u;
         double[,] i;
+        double errorX;
+        double errorI;
 
-        public Data(int n)
+        public void Init(int n)
         {
+            Random r = new Random();
+            a = new double[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    a[i, j] = (r.NextDouble() * 2 - 1) * 100;
+                }
+            }
             q = new int[n];
             x = new double[n];
             XReady = new double[n];
@@ -102,6 +112,18 @@ namespace DigitalMethods
         {
             get { return i; }
             set { i = value; }
+        }
+
+        public double ErrorX
+        {
+            get { return errorX; }
+            set { errorX = value; }
+        }
+
+        public double ErrorI
+        {
+            get { return errorI; }
+            set { errorI = value; }
         }
     }
 }

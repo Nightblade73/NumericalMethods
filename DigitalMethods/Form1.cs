@@ -12,59 +12,60 @@ namespace DigitalMethods
 {
     public partial class Form1 : Form
     {
-        Data data = new Data(4);
+        Data data = new Data();
         int action = 1;
+        List<double> errorX;
+        List<double> errorI;
 
         public Form1()
         {
             InitializeComponent();
+            chart.Series.Clear();
+            
+            errorI = new List<double>();
+            errorX = new List<double>();
         }
 
         private void butFact_Click(object sender, EventArgs e)
         {
-            switch (action)
+            if (data != null)
             {
-                case 1:
-                    tBResults.Text += Processing.DoChislMethod(data);
-                    break;
+                tBResults.Clear();
+                switch (action)
+                {
+                    case 1:
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 2:
+                        int n = int.Parse(tBMaxSize.Text);
+                        errorI.Clear();
+                        errorX.Clear();
+                        chart.Series.Clear();
+                        chart.Series.Add("Погрешность X");
+                        chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                        chart.Series.Add("Погрешность обратной матрицы");
+                        chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                        for (int i = 5; i <= n; i += 5)
+                        {
+                            data = new Data();
+                            data.Init(i);
+                            tBResults.Text += Processing.DoChislMethod(ref data);
+                            errorX.Add(data.ErrorX);
+                            errorI.Add(data.ErrorI);
+                        }
+                        for (int i = 1; i < errorX.Count+1; i++)
+                        {
+                            chart.Series[0].Points.AddXY(i * 5, errorX[i-1]);
+                            chart.Series[1].Points.AddXY(i * 5, errorI[i-1]);
+                        }
+                        break;
+                }
             }
-            tBResults.Text = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
-            int[] q = data.Q;
-            data.LU = Processing.LUrzl(data.A, ref q);
-            tBResults.Text += "Получивщаяся матрица:\r\n" + Processing.ArrayToString(data.LU);
-            data.Q = q;
-            tBResults.Text += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
-            double[] b = Processing.MatrixProduct(data.A, data.X);
-            data.B = b;
-            double[,] l, u;
-            Processing.Division(data.LU, out l, out u, data.Q);
-            data.L = l;
-            data.U = u;
-            double[] w = Processing.FindMatrixW(l, b, data.Q);
-            data.W = w;
-            data.XReady = Processing.FindMatrixX(u, w, data.Q);
-            tBResults.Text += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
-            tBResults.Text += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
-            tBResults.Text += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
-            tBResults.Text += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady, data.Q)) + "\r\n";
-            data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
-            tBResults.Text += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
-            tBResults.Text += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.A, data.AInver, data.I, data.Q));
-        }
+            else
+            {
+                MessageBox.Show("Данные пусты");
 
-        private void генерацияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //       //   string result = "";
-            //       Random r = new Random();
-            //       for (int i = 0; i < n; i++)
-            //       {
-            //           for (int j = 0; j < n; j++)
-            //           {
-            //               A[i, j] = (r.NextDouble() * 2 - 1) * 100;
-            //           }
-            //           //      result += "\r\n";
-            //       }
-            ////       tBResults.Text += ArrayToString();
+            }
         }
 
         private void очиститьОкноToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,7 +75,19 @@ namespace DigitalMethods
 
         private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FfromKeyboard form = new FfromKeyboard();
+            form.ShowForm(ref data);
+            action = 1;
+        }
 
+        private void случайнымОбразомToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 2;
+        }
+
+        private void заданиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("7. LU -разложение на основе\nгауссова исключения по\nстрокам с выбором\nглавного элемента по строке");
         }
     }
 }

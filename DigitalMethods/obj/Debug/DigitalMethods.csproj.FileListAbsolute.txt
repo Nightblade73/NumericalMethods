@@ -16,3 +16,4 @@ C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods
 C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.Form1.resources
 C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.Properties.Resources.resources
 C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.csproj.GenerateResource.Cache
+C:\Users\1\Documents\Visual Studio 2015\Projects\NumericalMethods\DigitalMethods\obj\Debug\DigitalMethods.FfromKeyboard.resources
