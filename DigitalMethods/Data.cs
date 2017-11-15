@@ -24,7 +24,7 @@ namespace DigitalMethods
         double[,] u;
         double[,] i;
 
-        public Data()
+        public Data(int n)
         {
             q = new int[n];
             x = new double[n];

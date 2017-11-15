@@ -239,13 +239,13 @@ namespace DigitalMethods
         /// <returns></returns>
         private static double FindMax(double[,] matrix)
         {
-            double max = matrix[0, 0];
+            double max = Math.Abs(matrix[0, 0]);
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     if (Math.Abs(matrix[i, j]) > max)
-                        max = Math.Abs(Math.Abs(matrix[i, j]));
+                        max = Math.Abs(matrix[i, j]);
                 }
             }
             return max;
@@ -266,7 +266,14 @@ namespace DigitalMethods
             }
             return max;
         }
-
+        /// <summary>
+        /// Вычисляет погрешность обратной матрицы. Принимает начальную матрицу, обратную матрицу, единичную матрицу и доп вектор
+        /// </summary>
+        /// <param name="Amatrix"></param>
+        /// <param name="AImatrix"></param>
+        /// <param name="Imatrix"></param>
+        /// <param name="prem"></param>
+        /// <returns></returns>
         public static double DeltaMax(double[,] Amatrix, double[,] AImatrix, double[,] Imatrix, int[] prem)
         {
             double[,] Iproduct = MatrixProduct(Amatrix, AImatrix, prem);
@@ -275,7 +282,7 @@ namespace DigitalMethods
             {
                 for (int j = 0; j < Amatrix.GetLength(0); j++)
                 {
-                    IDelta[i, j] = Imatrix[i, j] - IDelta[i, j];
+                    IDelta[i, j] = Imatrix[i, j] - Iproduct[i, j];
                 }
             }
             return FindMax(IDelta) / FindMax(Amatrix);
@@ -288,7 +295,7 @@ namespace DigitalMethods
             {
                 for (int j = 0; j < matrix.GetLength(0); j++)
                 {
-                    result += string.Format("{0,20:0.###}", matrix[i, j]) + "\t";
+                    result += string.Format("{0,20:0.########}", matrix[i, j]) + "\t";
                     //    result += Math.Round(matrix[i, j], 3) + "\t";
                 }
                 result += "\r\n";
@@ -315,6 +322,32 @@ namespace DigitalMethods
                 result += vector[i] + "\t";
             }
             return result + "\r\n\r\n";
+        }
+        public static string DoChislMethod(Data data)
+        {
+            string result = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
+            int[] q = data.Q;
+            data.LU = Processing.LUrzl(data.A, ref q);
+            result += "Получивщаяся матрица:\r\n" + Processing.ArrayToString(data.LU);
+            data.Q = q;
+            result += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
+            double[] b = Processing.MatrixProduct(data.A, data.X);
+            data.B = b;
+            double[,] l, u;
+            Processing.Division(data.LU, out l, out u, data.Q);
+            data.L = l;
+            data.U = u;
+            double[] w = Processing.FindMatrixW(l, b, data.Q);
+            data.W = w;
+            data.XReady = Processing.FindMatrixX(u, w, data.Q);
+            result += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
+            result += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
+            result += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
+            result += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady, data.Q)) + "\r\n";
+            data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
+            result += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
+            result += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.A, data.AInver, data.I, data.Q)) + "\r\n";
+            return result;
         }
     }
 }

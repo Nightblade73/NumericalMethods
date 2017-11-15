@@ -12,9 +12,9 @@ namespace DigitalMethods
 {
     public partial class Form1 : Form
     {
-        Data data = new Data();
+        Data data = new Data(4);
+        int action = 1;
 
-        double[] x = { 1, 2, 3, 4 };
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +22,12 @@ namespace DigitalMethods
 
         private void butFact_Click(object sender, EventArgs e)
         {
+            switch (action)
+            {
+                case 1:
+                    tBResults.Text += Processing.DoChislMethod(data);
+                    break;
+            }
             tBResults.Text = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
             int[] q = data.Q;
             data.LU = Processing.LUrzl(data.A, ref q);
@@ -40,12 +46,10 @@ namespace DigitalMethods
             tBResults.Text += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
             tBResults.Text += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
             tBResults.Text += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
-            tBResults.Text += "Погрешность X: " + Processing.DeltaMax(data.X, data.XReady, data.Q) + "\r\n";
-            //   tBResults.Text += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady)) + "\r\n";
+            tBResults.Text += "Погрешность X: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.X, data.XReady, data.Q)) + "\r\n";
             data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
             tBResults.Text += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
-            tBResults.Text += "Погрешность для обратной матрицы: " + Processing.DeltaMax(data.A, Processing.MatrixProduct(data.A, data.AInver, data.Q), data.I, data.Q);
-
+            tBResults.Text += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.###E-0}", Processing.DeltaMax(data.A, data.AInver, data.I, data.Q));
         }
 
         private void генерацияToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,6 +70,11 @@ namespace DigitalMethods
         private void очиститьОкноToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tBResults.Clear();
+        }
+
+        private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

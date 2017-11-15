@@ -34,6 +34,9 @@
             this.tBResults = new System.Windows.Forms.TextBox();
             this.butFact = new System.Windows.Forms.Button();
             this.zadanie = new System.Windows.Forms.Label();
+            this.ввестиСКлавиатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.случайнымОбразомToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.плохоОбусловленныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +54,10 @@
             // 
             // генерацияToolStripMenuItem
             // 
+            this.генерацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ввестиСКлавиатурыToolStripMenuItem,
+            this.случайнымОбразомToolStripMenuItem,
+            this.плохоОбусловленныеToolStripMenuItem});
             this.генерацияToolStripMenuItem.Name = "генерацияToolStripMenuItem";
             this.генерацияToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.генерацияToolStripMenuItem.Text = "Генерация";
@@ -66,20 +73,20 @@
             // tBResults
             // 
             this.tBResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tBResults.Location = new System.Drawing.Point(12, 101);
+            this.tBResults.Location = new System.Drawing.Point(12, 31);
             this.tBResults.Multiline = true;
             this.tBResults.Name = "tBResults";
             this.tBResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tBResults.Size = new System.Drawing.Size(676, 407);
+            this.tBResults.Size = new System.Drawing.Size(962, 434);
             this.tBResults.TabIndex = 1;
             // 
             // butFact
             // 
-            this.butFact.Location = new System.Drawing.Point(12, 514);
+            this.butFact.Location = new System.Drawing.Point(980, 31);
             this.butFact.Name = "butFact";
             this.butFact.Size = new System.Drawing.Size(138, 67);
             this.butFact.TabIndex = 3;
-            this.butFact.Text = "Факторизация";
+            this.butFact.Text = "Произвести расчёт";
             this.butFact.UseVisualStyleBackColor = true;
             this.butFact.Click += new System.EventHandler(this.butFact_Click);
             // 
@@ -87,12 +94,31 @@
             // 
             this.zadanie.AutoSize = true;
             this.zadanie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.zadanie.Location = new System.Drawing.Point(740, 210);
+            this.zadanie.Location = new System.Drawing.Point(886, 482);
             this.zadanie.Name = "zadanie";
             this.zadanie.Size = new System.Drawing.Size(215, 72);
             this.zadanie.TabIndex = 4;
             this.zadanie.Text = "7. LU -разложение на основе\r\nгауссова исключения по \r\nстрокам с выбором \r\nглавног" +
     "о элемента по строке";
+            // 
+            // ввестиСКлавиатурыToolStripMenuItem
+            // 
+            this.ввестиСКлавиатурыToolStripMenuItem.Name = "ввестиСКлавиатурыToolStripMenuItem";
+            this.ввестиСКлавиатурыToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.ввестиСКлавиатурыToolStripMenuItem.Text = "Ввести с клавиатуры";
+            this.ввестиСКлавиатурыToolStripMenuItem.Click += new System.EventHandler(this.ввестиСКлавиатурыToolStripMenuItem_Click);
+            // 
+            // случайнымОбразомToolStripMenuItem
+            // 
+            this.случайнымОбразомToolStripMenuItem.Name = "случайнымОбразомToolStripMenuItem";
+            this.случайнымОбразомToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.случайнымОбразомToolStripMenuItem.Text = "Случайным образом";
+            // 
+            // плохоОбусловленныеToolStripMenuItem
+            // 
+            this.плохоОбусловленныеToolStripMenuItem.Name = "плохоОбусловленныеToolStripMenuItem";
+            this.плохоОбусловленныеToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.плохоОбусловленныеToolStripMenuItem.Text = "Плохо обусловленные";
             // 
             // Form1
             // 
@@ -121,6 +147,9 @@
         private System.Windows.Forms.Button butFact;
         private System.Windows.Forms.ToolStripMenuItem очиститьОкноToolStripMenuItem;
         private System.Windows.Forms.Label zadanie;
+        private System.Windows.Forms.ToolStripMenuItem ввестиСКлавиатурыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem случайнымОбразомToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem плохоОбусловленныеToolStripMenuItem;
     }
 }
 
