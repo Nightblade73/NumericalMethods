@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DigitalMethods
@@ -30,20 +24,21 @@ namespace DigitalMethods
                 tBResults.Clear();
                 chart.Series.Clear();
                 list.Clear();
+                int count = 0;
+                if (action != 1)
+                    if (!tBMaxSize.Text.Equals(""))
+                        count = int.Parse(tBMaxSize.Text);
+                    else
+                    {
+                        MessageBox.Show("Введите максимальную размерность матрицы");
+                        return;
+                    }
                 switch (action)
                 {
                     case 1:
                         tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                     case 2:
-                        int count;
-                        if (!tBMaxSize.Text.Equals(""))
-                            count = int.Parse(tBMaxSize.Text);
-                        else
-                        {
-                            MessageBox.Show("Введите максимальную размерность матрицы");
-                            return;
-                        }
                         for (int i = 5; i <= count; i += 5)
                         {
                             data = new Data();
@@ -52,6 +47,17 @@ namespace DigitalMethods
                             tBResults.Text += Processing.DoChislMethod(ref data);
                             ChartRefresh();
                         }
+                        break;
+                    case 3:
+                        data = BadMatrix.Gilbert(count);
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        data = BadMatrix.Matrix2();
+                        tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                 }
             }
@@ -123,6 +129,61 @@ namespace DigitalMethods
                 FileManager.WriteFile(saveFileDialog.FileName, tBResults.Text);
                 MessageBox.Show("Данные выгружены");
             }
+        }
+
+        private void матрицаГильбертаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 3;
+        }
+
+        private void матрица1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 4;
+        }
+
+        private void матрица2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 5;
+        }
+
+        private void матрица3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 6;
+        }
+
+        private void матрица4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 7;
+        }
+
+        private void матрица5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 8;
+        }
+
+        private void матрица6ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 9;
+        }
+
+        private void матрица7ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 10;
+        }
+
+        private void матрица8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 11;
+        }
+
+        private void матрица9ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 12;
+        }
+
+        private void матрица10ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            action = 13;
         }
     }
 }

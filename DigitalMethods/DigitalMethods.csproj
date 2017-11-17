@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadMatrix.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="FfromKeyboard.cs">
       <SubType>Form</SubType>

@@ -19,6 +19,7 @@ namespace DigitalMethods
         double[] w;
         double[] xReady;
         int[] q;
+        int counter;
         double[,] l;
         double[,] u;
         double[,] i;
@@ -27,6 +28,7 @@ namespace DigitalMethods
 
         public void Init(int n)
         {
+            Counter = 0;
             Random r = new Random();
             a = new double[n, n];
             for (int i = 0; i < n; i++)
@@ -124,6 +126,12 @@ namespace DigitalMethods
         {
             get { return errorI; }
             set { errorI = value; }
+        }
+
+        public int Counter
+        {
+            get { return counter; }
+            set { counter = value; }
         }
     }
 }

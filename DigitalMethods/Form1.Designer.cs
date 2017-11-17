@@ -28,14 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.генерацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиСКлавиатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.случайнымОбразомToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.плохоОбусловленныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрицаГильбертаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.матрица10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьОкноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заданиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBResults = new System.Windows.Forms.TextBox();
@@ -93,9 +103,98 @@
             // 
             // плохоОбусловленныеToolStripMenuItem
             // 
+            this.плохоОбусловленныеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.матрицаГильбертаToolStripMenuItem,
+            this.матрица1ToolStripMenuItem,
+            this.матрица2ToolStripMenuItem,
+            this.матрица3ToolStripMenuItem,
+            this.матрица4ToolStripMenuItem,
+            this.матрица5ToolStripMenuItem,
+            this.матрица6ToolStripMenuItem,
+            this.матрица7ToolStripMenuItem,
+            this.матрица8ToolStripMenuItem,
+            this.матрица9ToolStripMenuItem,
+            this.матрица10ToolStripMenuItem});
             this.плохоОбусловленныеToolStripMenuItem.Name = "плохоОбусловленныеToolStripMenuItem";
             this.плохоОбусловленныеToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.плохоОбусловленныеToolStripMenuItem.Text = "Плохо обусловленные";
+            // 
+            // матрицаГильбертаToolStripMenuItem
+            // 
+            this.матрицаГильбертаToolStripMenuItem.Name = "матрицаГильбертаToolStripMenuItem";
+            this.матрицаГильбертаToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрицаГильбертаToolStripMenuItem.Text = "Матрица Гильберта";
+            this.матрицаГильбертаToolStripMenuItem.Click += new System.EventHandler(this.матрицаГильбертаToolStripMenuItem_Click);
+            // 
+            // матрица1ToolStripMenuItem
+            // 
+            this.матрица1ToolStripMenuItem.Name = "матрица1ToolStripMenuItem";
+            this.матрица1ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица1ToolStripMenuItem.Text = "Матрица 1";
+            this.матрица1ToolStripMenuItem.Click += new System.EventHandler(this.матрица1ToolStripMenuItem_Click);
+            // 
+            // матрица2ToolStripMenuItem
+            // 
+            this.матрица2ToolStripMenuItem.Name = "матрица2ToolStripMenuItem";
+            this.матрица2ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица2ToolStripMenuItem.Text = "Матрица 2";
+            this.матрица2ToolStripMenuItem.Click += new System.EventHandler(this.матрица2ToolStripMenuItem_Click);
+            // 
+            // матрица3ToolStripMenuItem
+            // 
+            this.матрица3ToolStripMenuItem.Name = "матрица3ToolStripMenuItem";
+            this.матрица3ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица3ToolStripMenuItem.Text = "Матрица 3";
+            this.матрица3ToolStripMenuItem.Click += new System.EventHandler(this.матрица3ToolStripMenuItem_Click);
+            // 
+            // матрица4ToolStripMenuItem
+            // 
+            this.матрица4ToolStripMenuItem.Name = "матрица4ToolStripMenuItem";
+            this.матрица4ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица4ToolStripMenuItem.Text = "Матрица 4";
+            this.матрица4ToolStripMenuItem.Click += new System.EventHandler(this.матрица4ToolStripMenuItem_Click);
+            // 
+            // матрица5ToolStripMenuItem
+            // 
+            this.матрица5ToolStripMenuItem.Name = "матрица5ToolStripMenuItem";
+            this.матрица5ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица5ToolStripMenuItem.Text = "Матрица 5";
+            this.матрица5ToolStripMenuItem.Click += new System.EventHandler(this.матрица5ToolStripMenuItem_Click);
+            // 
+            // матрица6ToolStripMenuItem
+            // 
+            this.матрица6ToolStripMenuItem.Name = "матрица6ToolStripMenuItem";
+            this.матрица6ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица6ToolStripMenuItem.Text = "Матрица 6";
+            this.матрица6ToolStripMenuItem.Click += new System.EventHandler(this.матрица6ToolStripMenuItem_Click);
+            // 
+            // матрица7ToolStripMenuItem
+            // 
+            this.матрица7ToolStripMenuItem.Name = "матрица7ToolStripMenuItem";
+            this.матрица7ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица7ToolStripMenuItem.Text = "Матрица 7";
+            this.матрица7ToolStripMenuItem.Click += new System.EventHandler(this.матрица7ToolStripMenuItem_Click);
+            // 
+            // матрица8ToolStripMenuItem
+            // 
+            this.матрица8ToolStripMenuItem.Name = "матрица8ToolStripMenuItem";
+            this.матрица8ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица8ToolStripMenuItem.Text = "Матрица 8";
+            this.матрица8ToolStripMenuItem.Click += new System.EventHandler(this.матрица8ToolStripMenuItem_Click);
+            // 
+            // матрица9ToolStripMenuItem
+            // 
+            this.матрица9ToolStripMenuItem.Name = "матрица9ToolStripMenuItem";
+            this.матрица9ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица9ToolStripMenuItem.Text = "Матрица 9";
+            this.матрица9ToolStripMenuItem.Click += new System.EventHandler(this.матрица9ToolStripMenuItem_Click);
+            // 
+            // матрица10ToolStripMenuItem
+            // 
+            this.матрица10ToolStripMenuItem.Name = "матрица10ToolStripMenuItem";
+            this.матрица10ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.матрица10ToolStripMenuItem.Text = "Матрица 10";
+            this.матрица10ToolStripMenuItem.Click += new System.EventHandler(this.матрица10ToolStripMenuItem_Click);
             // 
             // очиститьОкноToolStripMenuItem
             // 
@@ -160,16 +259,12 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.SystemColors.Menu;
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
+            chartArea10.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart.Legends.Add(legend10);
             this.chart.Location = new System.Drawing.Point(12, 416);
             this.chart.Name = "chart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(962, 395);
             this.chart.TabIndex = 7;
             this.chart.Text = "chart";
@@ -213,7 +308,7 @@
             // 
             this.bDataToFile.Location = new System.Drawing.Point(983, 310);
             this.bDataToFile.Name = "bDataToFile";
-            this.bDataToFile.Size = new System.Drawing.Size(135, 57);
+            this.bDataToFile.Size = new System.Drawing.Size(135, 66);
             this.bDataToFile.TabIndex = 9;
             this.bDataToFile.Text = "Выгрузить данные в файл";
             this.bDataToFile.UseVisualStyleBackColor = true;
@@ -270,6 +365,17 @@
         private System.Windows.Forms.RadioButton rBErrorX;
         private System.Windows.Forms.Button bDataToFile;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem матрицаГильбертаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица6ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица7ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица8ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица9ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem матрица10ToolStripMenuItem;
     }
 }
 

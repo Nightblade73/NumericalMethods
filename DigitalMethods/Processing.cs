@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalMethods
 {
@@ -14,7 +10,7 @@ namespace DigitalMethods
         /// <param name="matrix">Матрица А</param>
         /// <param name="prem">Дополнительный вектор, позволяющий обращаться к определённым элементам в матрице</param>
         /// <returns></returns>
-        public static double[,] LUrzl(double[,] matrix, ref int[] prem)
+        private static double[,] LUrzl(double[,] matrix, ref int[] prem)
         {
             double[,] LUmatrix = MatrixDuplicate(matrix);
             for (int i = 0; i < LUmatrix.GetLength(0); i++)
@@ -58,7 +54,7 @@ namespace DigitalMethods
         /// </summary>
         /// <param name="LUmatrix">LU матрица</param>
         /// <returns></returns>
-        public static double Determ(double[,] LUmatrix, int[] prem)
+        private static double Determ(double[,] LUmatrix, int[] prem)
         {
             double det = 1;
             for (int i = 0; i < LUmatrix.GetLength(0); i++)
@@ -77,7 +73,7 @@ namespace DigitalMethods
         /// <param name="Lmatrix">Нижне-треугольная матрица</param>
         /// <param name="b">Вектор столбец</param>
         /// <returns></returns>
-        public static double[] FindMatrixW(double[,] Lmatrix, double[] b, int[] prem)
+        private static double[] FindMatrixW(double[,] Lmatrix, double[] b, int[] prem)
         {
             int n = Lmatrix.GetLength(0);
             double[] w = new double[n];
@@ -97,7 +93,7 @@ namespace DigitalMethods
         /// <param name="Umatrix">Верхне-треугольная матрица</param>
         /// <param name="w">Вектор столбец</param>
         /// <returns></returns>
-        public static double[] FindMatrixX(double[,] Umatrix, double[] w, int[] prem)
+        private static double[] FindMatrixX(double[,] Umatrix, double[] w, int[] prem)
         {
             int n = Umatrix.GetLength(0);
             double[] x = new double[n];
@@ -117,7 +113,7 @@ namespace DigitalMethods
         /// <param name="rows">Количество строк</param>
         /// <param name="cols">Количество столбцов</param>
         /// <returns></returns>
-        public static double[,] MatrixCreate(int rows, int cols)
+        private static double[,] MatrixCreate(int rows, int cols)
         {
             // Создаем матрицу, полностью инициализированную
             // значениями 0.0. Проверка входных параметров опущена.
@@ -130,7 +126,7 @@ namespace DigitalMethods
         /// <param name="matrixA">Квадратная матрица</param>
         /// <param name="matrixB">Вектор столбец</param>
         /// <returns></returns>
-        public static double[] MatrixProduct(double[,] matrixA, double[] matrixB)
+        private static double[] MatrixProduct(double[,] matrixA, double[] matrixB)
         {
             int aRows = matrixA.GetLength(0); int aCols = matrixA.GetLength(0);
             int bRows = matrixB.Length;
@@ -146,7 +142,7 @@ namespace DigitalMethods
         /// <param name="matrixA">Квадратная матрица</param>
         /// <param name="matrixB">Вектор столбец</param>
         /// <returns></returns>
-        public static double[,] MatrixProduct(double[,] matrixA, double[,] matrixB, int[] prem)
+        private static double[,] MatrixProduct(double[,] matrixA, double[,] matrixB, int[] prem)
         {
             int aRows = matrixA.GetLength(0);
             int aCols = matrixA.GetLength(1);
@@ -167,7 +163,7 @@ namespace DigitalMethods
         /// <param name="LUmatrix">Входная матрица LU. Матрица U с единицами по диагонали</param>
         /// <param name="Lmatrix">Нижне-треугольная матрица</param>
         /// <param name="Umatrix">Верхне-треугольная матрица</param>
-        public static void Division(double[,] LUmatrix, out double[,] Lmatrix, out double[,] Umatrix, int[] prem)
+        private static void Division(double[,] LUmatrix, out double[,] Lmatrix, out double[,] Umatrix, int[] prem)
         {
             Lmatrix = new double[LUmatrix.GetLength(0), LUmatrix.GetLength(0)];
             Umatrix = new double[LUmatrix.GetLength(0), LUmatrix.GetLength(0)];
@@ -194,7 +190,7 @@ namespace DigitalMethods
         /// </summary>
         /// <param name="matrix"></param>
         /// <returns></returns>
-        public static double[,] MatrixDuplicate(double[,] matrix)
+        private static double[,] MatrixDuplicate(double[,] matrix)
         {
             double[,] result = (double[,])matrix.Clone();
             return result;
@@ -204,7 +200,7 @@ namespace DigitalMethods
         /// </summary>
         /// <param name="matrix"></param>
         /// <returns></returns>
-        public static double[] MatrixDuplicate(double[,] matrix, int j)
+        private static double[] MatrixDuplicate(double[,] matrix, int j)
         {
             double[] result = new double[matrix.GetLength(1)];
             for (int i = 0; i < matrix.GetLength(1); i++)
@@ -218,7 +214,7 @@ namespace DigitalMethods
         /// <param name="Umatrix"></param>
         /// <param name="prem"></param>
         /// <returns></returns>
-        public static double[,] Inversion(double[,] Lmatrix, double[,] Umatrix, double[,] Imatrix, int[] prem)
+        private static double[,] Inversion(double[,] Lmatrix, double[,] Umatrix, double[,] Imatrix, int[] prem)
         {
             double[,] result = new double[Lmatrix.GetLength(0), Lmatrix.GetLength(0)];
             for (int j = 0; j < result.GetLength(0); j++)
@@ -256,7 +252,7 @@ namespace DigitalMethods
         /// <param name="X"></param>
         /// <param name="XReady"></param>
         /// <returns></returns>
-        public static double DeltaMax(double[] X, double[] XReady, int[] prem)
+        private static double DeltaMax(double[] X, double[] XReady, int[] prem)
         {
             double max = Math.Abs(X[prem[0]] - XReady[0]);
             for (int i = 1; i < X.GetLength(0); i++)
@@ -274,7 +270,7 @@ namespace DigitalMethods
         /// <param name="Imatrix"></param>
         /// <param name="prem"></param>
         /// <returns></returns>
-        public static double DeltaMax(double[,] Amatrix, double[,] AImatrix, double[,] Imatrix, int[] prem)
+        private static double DeltaMax(double[,] Amatrix, double[,] AImatrix, double[,] Imatrix, int[] prem)
         {
             double[,] Iproduct = MatrixProduct(Amatrix, AImatrix, prem);
             double[,] IDelta = new double[Amatrix.GetLength(0), Amatrix.GetLength(0)];
@@ -288,7 +284,7 @@ namespace DigitalMethods
             return FindMax(IDelta) / FindMax(Amatrix);
         }
 
-        public static string ArrayToString(double[,] matrix)
+        private static string ArrayToString(double[,] matrix)
         {
             string result = "";
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -303,7 +299,7 @@ namespace DigitalMethods
             return result + "\r\n";
         }
 
-        public static string ArrayToString(double[] vector)
+        private static string ArrayToString(double[] vector)
         {
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
@@ -314,7 +310,7 @@ namespace DigitalMethods
             return result + "\r\n\r\n";
         }
 
-        public static string ArrayToString(int[] vector)
+        private static string ArrayToString(int[] vector)
         {
             string result = "";
             for (int i = 0; i < vector.GetLength(0); i++)
@@ -330,28 +326,28 @@ namespace DigitalMethods
         /// <returns></returns>
         public static string DoChislMethod(ref Data data)
         {
-            string result = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
+            string result = "Начальная матрица:\r\n" + ArrayToString(data.A);
             int[] q = data.Q;
-            data.LU = Processing.LUrzl(data.A, ref q);
-            result += "Получивщаяся матрица:\r\n" + Processing.ArrayToString(data.LU);
+            data.LU = LUrzl(data.A, ref q);
+            result += "Получивщаяся матрица:\r\n" + ArrayToString(data.LU);
             data.Q = q;
-            result += "Дополнительный вектор Q:\r\n" + Processing.ArrayToString(data.Q);
-            double[] b = Processing.MatrixProduct(data.A, data.X);
+            result += "Дополнительный вектор Q:\r\n" + ArrayToString(data.Q);
+            double[] b = MatrixProduct(data.A, data.X);
             data.B = b;
             double[,] l, u;
-            Processing.Division(data.LU, out l, out u, data.Q);
+            Division(data.LU, out l, out u, data.Q);
             data.L = l;
             data.U = u;
-            double[] w = Processing.FindMatrixW(l, b, data.Q);
+            double[] w = FindMatrixW(l, b, data.Q);
             data.W = w;
-            data.XReady = Processing.FindMatrixX(u, w, data.Q);
-            result += "Начальный вектор X:\r\n" + Processing.ArrayToString(data.X);
-            result += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
-            result += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
+            data.XReady = FindMatrixX(u, w, data.Q);
+            result += "Начальный вектор X:\r\n" + ArrayToString(data.X);
+            result += "Получившийся вектор X:\r\n" + ArrayToString(data.XReady);
+            result += "Детерминант: " + Determ(data.LU, data.Q) + "\r\n";
             data.ErrorX = DeltaMax(data.X, data.XReady, data.Q);
             result += "Погрешность X: " + string.Format("{0,10:0.##E-0}", data.ErrorX) + "\r\n";
-            data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
-            result += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
+            data.AInver = Inversion(data.L, data.U, data.I, data.Q);
+            result += "Получивщаяся обратная матрица:\r\n" + ArrayToString(data.AInver);
             data.ErrorI = DeltaMax(data.A, data.AInver, data.I, data.Q);
             result += "Погрешность для обратной матрицы: " + string.Format("{0,10:0.##E-0}", data.ErrorI) + "\r\n";
             return result;
