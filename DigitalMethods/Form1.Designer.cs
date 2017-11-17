@@ -28,24 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.генерацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиСКлавиатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.случайнымОбразомToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.плохоОбусловленныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьОкноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.заданиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBResults = new System.Windows.Forms.TextBox();
             this.butFact = new System.Windows.Forms.Button();
             this.zadanie = new System.Windows.Forms.Label();
             this.tBMaxSize = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.заданиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rBErrorI = new System.Windows.Forms.RadioButton();
+            this.rBErrorX = new System.Windows.Forms.RadioButton();
+            this.bDataToFile = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -98,15 +104,23 @@
             this.очиститьОкноToolStripMenuItem.Text = "Очистить окно";
             this.очиститьОкноToolStripMenuItem.Click += new System.EventHandler(this.очиститьОкноToolStripMenuItem_Click);
             // 
+            // заданиеToolStripMenuItem
+            // 
+            this.заданиеToolStripMenuItem.Name = "заданиеToolStripMenuItem";
+            this.заданиеToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            this.заданиеToolStripMenuItem.Text = "Задание";
+            this.заданиеToolStripMenuItem.Click += new System.EventHandler(this.заданиеToolStripMenuItem_Click);
+            // 
             // tBResults
             // 
             this.tBResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tBResults.Location = new System.Drawing.Point(12, 31);
             this.tBResults.Multiline = true;
             this.tBResults.Name = "tBResults";
-            this.tBResults.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tBResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tBResults.Size = new System.Drawing.Size(962, 379);
             this.tBResults.TabIndex = 1;
+            this.tBResults.WordWrap = false;
             // 
             // butFact
             // 
@@ -146,32 +160,76 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.SystemColors.Menu;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart.Legends.Add(legend3);
             this.chart.Location = new System.Drawing.Point(12, 416);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(962, 461);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart.Series.Add(series3);
+            this.chart.Size = new System.Drawing.Size(962, 395);
             this.chart.TabIndex = 7;
             this.chart.Text = "chart";
             // 
-            // заданиеToolStripMenuItem
+            // groupBox1
             // 
-            this.заданиеToolStripMenuItem.Name = "заданиеToolStripMenuItem";
-            this.заданиеToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
-            this.заданиеToolStripMenuItem.Text = "Задание";
-            this.заданиеToolStripMenuItem.Click += new System.EventHandler(this.заданиеToolStripMenuItem_Click);
+            this.groupBox1.Controls.Add(this.rBErrorI);
+            this.groupBox1.Controls.Add(this.rBErrorX);
+            this.groupBox1.Location = new System.Drawing.Point(980, 166);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(138, 138);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Погрешность на графике:";
+            // 
+            // rBErrorI
+            // 
+            this.rBErrorI.AutoSize = true;
+            this.rBErrorI.Location = new System.Drawing.Point(3, 65);
+            this.rBErrorI.Name = "rBErrorI";
+            this.rBErrorI.Size = new System.Drawing.Size(120, 72);
+            this.rBErrorI.TabIndex = 10;
+            this.rBErrorI.Text = "Погрешность \r\nобратной \r\nматрицы\r\n\r\n";
+            this.rBErrorI.UseVisualStyleBackColor = true;
+            this.rBErrorI.CheckedChanged += new System.EventHandler(this.rBErrorI_CheckedChanged);
+            // 
+            // rBErrorX
+            // 
+            this.rBErrorX.AutoSize = true;
+            this.rBErrorX.Checked = true;
+            this.rBErrorX.Location = new System.Drawing.Point(3, 38);
+            this.rBErrorX.Name = "rBErrorX";
+            this.rBErrorX.Size = new System.Drawing.Size(129, 21);
+            this.rBErrorX.TabIndex = 9;
+            this.rBErrorX.TabStop = true;
+            this.rBErrorX.Text = "Погрешность Х";
+            this.rBErrorX.UseVisualStyleBackColor = true;
+            this.rBErrorX.CheckedChanged += new System.EventHandler(this.rBErrorX_CheckedChanged);
+            // 
+            // bDataToFile
+            // 
+            this.bDataToFile.Location = new System.Drawing.Point(983, 310);
+            this.bDataToFile.Name = "bDataToFile";
+            this.bDataToFile.Size = new System.Drawing.Size(135, 57);
+            this.bDataToFile.TabIndex = 9;
+            this.bDataToFile.Text = "Выгрузить данные в файл";
+            this.bDataToFile.UseVisualStyleBackColor = true;
+            this.bDataToFile.Click += new System.EventHandler(this.bDataToFile_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Text Files | *.txt";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 953);
+            this.ClientSize = new System.Drawing.Size(1130, 803);
+            this.Controls.Add(this.bDataToFile);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tBMaxSize);
@@ -185,6 +243,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,6 +265,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem заданиеToolStripMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rBErrorI;
+        private System.Windows.Forms.RadioButton rBErrorX;
+        private System.Windows.Forms.Button bDataToFile;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

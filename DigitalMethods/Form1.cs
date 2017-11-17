@@ -14,16 +14,13 @@ namespace DigitalMethods
     {
         Data data = new Data();
         int action = 1;
-        List<double> errorX;
-        List<double> errorI;
+        List<Data> list;
 
         public Form1()
         {
             InitializeComponent();
             chart.Series.Clear();
-            
-            errorI = new List<double>();
-            errorX = new List<double>();
+            list = new List<Data>();
         }
 
         private void butFact_Click(object sender, EventArgs e)
@@ -31,32 +28,29 @@ namespace DigitalMethods
             if (data != null)
             {
                 tBResults.Clear();
+                chart.Series.Clear();
+                list.Clear();
                 switch (action)
                 {
                     case 1:
                         tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                     case 2:
-                        int n = int.Parse(tBMaxSize.Text);
-                        errorI.Clear();
-                        errorX.Clear();
-                        chart.Series.Clear();
-                        chart.Series.Add("Погрешность X");
-                        chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                        chart.Series.Add("Погрешность обратной матрицы");
-                        chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                        for (int i = 5; i <= n; i += 5)
+                        int count;
+                        if (!tBMaxSize.Text.Equals(""))
+                            count = int.Parse(tBMaxSize.Text);
+                        else
+                        {
+                            MessageBox.Show("Введите максимальную размерность матрицы");
+                            return;
+                        }
+                        for (int i = 5; i <= count; i += 5)
                         {
                             data = new Data();
                             data.Init(i);
+                            list.Add(data);
                             tBResults.Text += Processing.DoChislMethod(ref data);
-                            errorX.Add(data.ErrorX);
-                            errorI.Add(data.ErrorI);
-                        }
-                        for (int i = 1; i < errorX.Count+1; i++)
-                        {
-                            chart.Series[0].Points.AddXY(i * 5, errorX[i-1]);
-                            chart.Series[1].Points.AddXY(i * 5, errorI[i-1]);
+                            ChartRefresh();
                         }
                         break;
                 }
@@ -64,7 +58,6 @@ namespace DigitalMethods
             else
             {
                 MessageBox.Show("Данные пусты");
-
             }
         }
 
@@ -87,7 +80,49 @@ namespace DigitalMethods
 
         private void заданиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7. LU -разложение на основе\nгауссова исключения по\nстрокам с выбором\nглавного элемента по строке");
+            string str = "7. LU -разложение на основе\nгауссова исключения по\nстрокам с выбором\nглавного элемента по строке";
+            MessageBox.Show(str);
+        }
+        public void ChartRefresh()
+        {
+            chart.Series.Clear();
+            if (rBErrorX.Checked)
+            {
+                chart.Series.Add("Погрешность X");
+                chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                for (int i = 1; i < list.Count + 1; i++)
+                {
+                    chart.Series[0].Points.AddXY(i * 5, list[i - 1].ErrorX);
+                }
+            }
+            else
+            {
+                chart.Series.Add("Погрешность\r\nобратной\r\nматрицы");
+                chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                for (int i = 1; i < list.Count + 1; i++)
+                {
+                    chart.Series[0].Points.AddXY(i * 5, list[i - 1].ErrorI);
+                }
+            }
+        }
+
+        private void rBErrorX_CheckedChanged(object sender, EventArgs e)
+        {
+            ChartRefresh();
+        }
+
+        private void rBErrorI_CheckedChanged(object sender, EventArgs e)
+        {
+            ChartRefresh();
+        }
+
+        private void bDataToFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileManager.WriteFile(saveFileDialog.FileName, tBResults.Text);
+                MessageBox.Show("Данные выгружены");
+            }
         }
     }
 }

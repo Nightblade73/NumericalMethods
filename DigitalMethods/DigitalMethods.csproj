@@ -54,6 +54,7 @@
     <Compile Include="FfromKeyboard.Designer.cs">
       <DependentUpon>FfromKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

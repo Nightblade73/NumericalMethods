@@ -323,6 +323,11 @@ namespace DigitalMethods
             }
             return result + "\r\n\r\n";
         }
+        /// <summary>
+        /// Основной метод, делающий полные вычисления: Разложение, поиск детерминанта, поиск решения, поиск обратной матрицы, поиск погрешностей
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static string DoChislMethod(ref Data data)
         {
             string result = "Начальная матрица:\r\n" + Processing.ArrayToString(data.A);
@@ -344,8 +349,7 @@ namespace DigitalMethods
             result += "Получившийся вектор X:\r\n" + Processing.ArrayToString(data.XReady);
             result += "Детерминант: " + Processing.Determ(data.LU, data.Q) + "\r\n";
             data.ErrorX = DeltaMax(data.X, data.XReady, data.Q);
-            //  result += "Погрешность X: " + string.Format("{0,10:0.##E-0}", data.ErrorX) + "\r\n";
-            result += "Погрешность X: " + data.ErrorX + "\r\n";
+            result += "Погрешность X: " + string.Format("{0,10:0.##E-0}", data.ErrorX) + "\r\n";
             data.AInver = Processing.Inversion(data.L, data.U, data.I, data.Q);
             result += "Получивщаяся обратная матрица:\r\n" + Processing.ArrayToString(data.AInver);
             data.ErrorI = DeltaMax(data.A, data.AInver, data.I, data.Q);
