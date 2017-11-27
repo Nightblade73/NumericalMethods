@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.генерацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиСКлавиатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,6 @@
             this.матрица7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.матрица8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.матрица9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.матрица10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьОкноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заданиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBResults = new System.Windows.Forms.TextBox();
@@ -59,6 +58,8 @@
             this.rBErrorX = new System.Windows.Forms.RadioButton();
             this.bDataToFile = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tBArg = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -113,8 +114,7 @@
             this.матрица6ToolStripMenuItem,
             this.матрица7ToolStripMenuItem,
             this.матрица8ToolStripMenuItem,
-            this.матрица9ToolStripMenuItem,
-            this.матрица10ToolStripMenuItem});
+            this.матрица9ToolStripMenuItem});
             this.плохоОбусловленныеToolStripMenuItem.Name = "плохоОбусловленныеToolStripMenuItem";
             this.плохоОбусловленныеToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.плохоОбусловленныеToolStripMenuItem.Text = "Плохо обусловленные";
@@ -189,13 +189,6 @@
             this.матрица9ToolStripMenuItem.Text = "Матрица 9";
             this.матрица9ToolStripMenuItem.Click += new System.EventHandler(this.матрица9ToolStripMenuItem_Click);
             // 
-            // матрица10ToolStripMenuItem
-            // 
-            this.матрица10ToolStripMenuItem.Name = "матрица10ToolStripMenuItem";
-            this.матрица10ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.матрица10ToolStripMenuItem.Text = "Матрица 10";
-            this.матрица10ToolStripMenuItem.Click += new System.EventHandler(this.матрица10ToolStripMenuItem_Click);
-            // 
             // очиститьОкноToolStripMenuItem
             // 
             this.очиститьОкноToolStripMenuItem.Name = "очиститьОкноToolStripMenuItem";
@@ -259,10 +252,10 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.SystemColors.Menu;
-            chartArea10.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chart.Legends.Add(legend10);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(12, 416);
             this.chart.Name = "chart";
             this.chart.Size = new System.Drawing.Size(962, 395);
@@ -273,7 +266,7 @@
             // 
             this.groupBox1.Controls.Add(this.rBErrorI);
             this.groupBox1.Controls.Add(this.rBErrorX);
-            this.groupBox1.Location = new System.Drawing.Point(980, 166);
+            this.groupBox1.Location = new System.Drawing.Point(980, 217);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(138, 138);
             this.groupBox1.TabIndex = 8;
@@ -306,7 +299,7 @@
             // 
             // bDataToFile
             // 
-            this.bDataToFile.Location = new System.Drawing.Point(983, 310);
+            this.bDataToFile.Location = new System.Drawing.Point(983, 361);
             this.bDataToFile.Name = "bDataToFile";
             this.bDataToFile.Size = new System.Drawing.Size(135, 66);
             this.bDataToFile.TabIndex = 9;
@@ -318,11 +311,29 @@
             // 
             this.saveFileDialog.Filter = "Text Files | *.txt";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(980, 163);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 17);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Угол для матрицы";
+            // 
+            // tBArg
+            // 
+            this.tBArg.Location = new System.Drawing.Point(980, 183);
+            this.tBArg.Name = "tBArg";
+            this.tBArg.Size = new System.Drawing.Size(138, 22);
+            this.tBArg.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 803);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tBArg);
             this.Controls.Add(this.bDataToFile);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart);
@@ -375,7 +386,8 @@
         private System.Windows.Forms.ToolStripMenuItem матрица7ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem матрица8ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem матрица9ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem матрица10ToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tBArg;
     }
 }
 

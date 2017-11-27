@@ -24,41 +24,95 @@ namespace DigitalMethods
                 tBResults.Clear();
                 chart.Series.Clear();
                 list.Clear();
-                int count = 0;
-                if (action != 1)
-                    if (!tBMaxSize.Text.Equals(""))
-                        count = int.Parse(tBMaxSize.Text);
-                    else
-                    {
-                        MessageBox.Show("Введите максимальную размерность матрицы");
-                        return;
-                    }
                 switch (action)
                 {
                     case 1:
                         tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                     case 2:
-                        for (int i = 5; i <= count; i += 5)
-                        {
-                            data = new Data();
-                            data.Init(i);
-                            list.Add(data);
-                            tBResults.Text += Processing.DoChislMethod(ref data);
-                            ChartRefresh();
-                        }
+                        if (CheckCount())
+                            for (int i = 5; i <= int.Parse(tBMaxSize.Text); i += 5)
+                            {
+                                data = new Data();
+                                data.Init(i);
+                                list.Add(data);
+                                tBResults.Text += Processing.DoChislMethod(ref data);
+                                ChartRefresh();
+                            }
+                        else
+                            return;
                         break;
                     case 3:
-                        data = BadMatrix.Gilbert(count);
+                        if (CheckCount())
+                            data = BadMatrix.Gilbert(int.Parse(tBMaxSize.Text));
+                        else
+                            return;
                         tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                     case 4:
-                        
+                        data = BadMatrix.Matrix1();
+                        tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
                     case 5:
                         data = BadMatrix.Matrix2();
                         tBResults.Text += Processing.DoChislMethod(ref data);
                         break;
+                    case 6:
+                        if (CheckCount())
+                            data = BadMatrix.Matrix3(int.Parse(tBMaxSize.Text));
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 7:
+                        if (CheckCount())
+                            data = BadMatrix.Matrix4(int.Parse(tBMaxSize.Text));
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 8:
+                        if (CheckArg())
+                            data = BadMatrix.Matrix5(double.Parse(tBArg.Text));
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 9:
+                        if (CheckCount())
+                            if (CheckArg())
+                                data = BadMatrix.Matrix6(int.Parse(tBMaxSize.Text), double.Parse(tBArg.Text));
+                            else
+                                return;
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 10:
+
+                        if (CheckCount())
+                            if (CheckArg())
+                                data = BadMatrix.Matrix7(int.Parse(tBMaxSize.Text), double.Parse(tBArg.Text));
+                            else
+                                return;
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 11:
+                        if (CheckCount())
+                            if (CheckArg())
+                                data = BadMatrix.Matrix8(int.Parse(tBMaxSize.Text), double.Parse(tBArg.Text));
+                            else
+                                return;
+                        else
+                            return;
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break;
+                    case 12:
+                        data = BadMatrix.Matrix9();
+                        tBResults.Text += Processing.DoChislMethod(ref data);
+                        break; ;
                 }
             }
             else
@@ -180,10 +234,25 @@ namespace DigitalMethods
         {
             action = 12;
         }
-
-        private void матрица10ToolStripMenuItem_Click(object sender, EventArgs e)
+        public bool CheckCount()
         {
-            action = 13;
+            if (!tBMaxSize.Text.Equals(""))
+                return true;
+            else
+            {
+                MessageBox.Show("Введите максимальную размерность матрицы");
+                return false;
+            }
+        }
+        public bool CheckArg()
+        {
+            if (!tBArg.Text.Equals(""))
+                return true;
+            else
+            {
+                MessageBox.Show("Введите угол");
+                return false;
+            }
         }
     }
 }
