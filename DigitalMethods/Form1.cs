@@ -6,7 +6,7 @@ namespace DigitalMethods
 {
     public partial class Form1 : Form
     {
-        Data data = new Data();
+        Data data;
         int action = 1;
         List<Data> list;
 
@@ -31,7 +31,7 @@ namespace DigitalMethods
                         break;
                     case 2:
                         if (CheckCount())
-                            for (int i = 5; i <= int.Parse(tBMaxSize.Text); i += 5)
+                            for (int i = int.Parse(tBMinSize.Text); i <= int.Parse(tBMaxSize.Text); i += int.Parse(tBStep.Text))
                             {
                                 data = new Data();
                                 data.Init(i);
@@ -129,12 +129,14 @@ namespace DigitalMethods
         private void ввестиСКлавиатурыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FfromKeyboard form = new FfromKeyboard();
+            data = new Data();
             form.ShowForm(ref data);
             action = 1;
         }
 
         private void случайнымОбразомToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            data = new Data();
             action = 2;
         }
 
@@ -152,7 +154,7 @@ namespace DigitalMethods
                 chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                 for (int i = 1; i < list.Count + 1; i++)
                 {
-                    chart.Series[0].Points.AddXY(i * 5, list[i - 1].ErrorX);
+                    chart.Series[0].Points.AddXY(i * int.Parse(tBStep.Text), list[i - 1].ErrorX);
                 }
             }
             else
@@ -161,7 +163,7 @@ namespace DigitalMethods
                 chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                 for (int i = 1; i < list.Count + 1; i++)
                 {
-                    chart.Series[0].Points.AddXY(i * 5, list[i - 1].ErrorI);
+                    chart.Series[0].Points.AddXY(i * int.Parse(tBStep.Text), list[i - 1].ErrorI);
                 }
             }
         }
