@@ -11,3 +11,4 @@ C:\Users\Anastasia Shulga\Documents\NumericalMethods\WindowsFormsApplication6\ob
 C:\Users\Anastasia Shulga\Documents\NumericalMethods\WindowsFormsApplication6\obj\Debug\ChislMethods.csproj.CoreCompileInputs.cache
 C:\Users\Anastasia Shulga\Documents\NumericalMethods\WindowsFormsApplication6\obj\Debug\WindowsFormsApplication6.exe
 C:\Users\Anastasia Shulga\Documents\NumericalMethods\WindowsFormsApplication6\obj\Debug\WindowsFormsApplication6.pdb
+C:\Users\Anastasia Shulga\Documents\NumericalMethods\WindowsFormsApplication6\obj\Debug\WindowsFormsApplication6.FormKeys.resources
