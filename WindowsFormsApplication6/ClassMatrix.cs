@@ -15,6 +15,7 @@ namespace WindowsFormsApplication6
         //                { 3, 8, 1, 1 },
         //                { 2, 5, 0, 5 }};
         double[] x;
+        double[] xDelta;
         double[,] A;
         double[,] I;
         double[,] UL;
@@ -44,6 +45,7 @@ namespace WindowsFormsApplication6
         public double[,] IGetter { get => I; set => I = value; }
         public double[,] AInverseGetter { get => AInverse; set => AInverse = value; }
         public double[] XGetter { get => x; set => x = value; }
+        public double[] XDelta { get => xDelta; set => xDelta = value; }
 
         public string Randomize(int k)
         {
@@ -60,6 +62,22 @@ namespace WindowsFormsApplication6
           
             return Result(A);
         }
+        public string FromKeys(double[,] mas) {
+
+            A = new double[mas.GetLength(0), mas.GetLength(0)];
+            A = mas;
+            n = mas.GetLength(0);
+            x = new double[mas.GetLength(0)];
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                
+                x[i] = i + 1.0;
+            }
+            return Result(A);
+
+
+        }
+
         public void Clone()
         {
             UL = new double[n, n];
@@ -196,7 +214,7 @@ namespace WindowsFormsApplication6
             string result = "";
             for (int i = 0; i < mas.Length; i++)
             {
-                result += (mas[i] + Environment.NewLine);
+                result += Convert.ToString(mas[i]) + " ";
             }
             return result;
         }

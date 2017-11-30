@@ -22,5 +22,10 @@ namespace WindowsFormsApplication6
             DataBuffer = textBox1.Text;
             Close();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

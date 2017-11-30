@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace WindowsFormsApplication6
 
         ClassMatrix cm = new ClassMatrix();
         string s = "";
+        double[,] mas;
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -31,27 +34,45 @@ namespace WindowsFormsApplication6
 
             if (rBrand.Checked)
             {
+                textBox1.Clear();
                 for (int i = Convert.ToInt32(textBoxFrom.Text); i <= Convert.ToInt32(textBoxTo.Text); i = i + 5)
                 {
+                    
                     textBox1.Text += cm.Randomize(i);
                     textBox1.Text += Environment.NewLine;
-                    textBox1.Text += cm.Factorization() + Environment.NewLine;
-                    textBox1.Text += ("detA = " + Environment.NewLine + cm.Determ(cm.ULGetter) + Environment.NewLine);
+                    textBox1.Text += "Разложение UL:" + Environment.NewLine + cm.Factorization() + Environment.NewLine;
+                    textBox1.Text += ("detA = " +  cm.Determ(cm.ULGetter) + Environment.NewLine);
                     // textBox1.Text += ("Вектор b = " + cm.ResultX(cm.MatrixProduct(cm.AGetter, x)) + Environment.NewLine);
-                    textBox1.Text += ("Вектор x до = " + cm.ResultX(cm.FindMatrixX(cm.L_Getter, cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter)))));
-                    textBox1.Text += ("Вектор x после = " + cm.ResultX(cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter))));
+                    textBox1.Text += ("Вектор x до = " + cm.ResultX(cm.XGetter) + Environment.NewLine);
+                    cm.XDelta = cm.FindMatrixX(cm.L_Getter, cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter)));
+                    textBox1.Text += ("Вектор x после = " + cm.ResultX(cm.XDelta) + Environment.NewLine);
 
 
                     // textBox1.Text += ("U = \r\n" + cm.Result(cm.UGetter) + Environment.NewLine + "L_ = \r\n" + cm.Result(cm.L_Getter));
                     textBox1.Text += ("Обратная матрица = " + Environment.NewLine + cm.Result(cm.Inversion(cm.L_Getter, cm.UGetter)) + Environment.NewLine);
                     // textBox1.Text += ("Проверка " + cm.Result(cm.MatrixProductS(cm.AGetter, cm.Inversion(cm.L_Getter, cm.UGetter))));
                     textBox1.Text += ("Погрешность " + cm.Delta(cm.AGetter, cm.AInverseGetter, cm.IGetter) + '\t');
-                    textBox1.Text += ("Погрешность x = " + cm.DeltaX(cm.FindMatrixX(cm.L_Getter, cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter))), cm.XGetter) + Environment.NewLine);
+                    textBox1.Text += ("Погрешность x = " + cm.DeltaX(cm.XDelta, cm.XGetter) + Environment.NewLine);
                 }
             }
             if (rBkeys.Checked)
             {
+                textBox1.Clear();
+                cm.FromKeys(mas);
+                textBox1.Text += "Разложение UL:" + Environment.NewLine + cm.Factorization() + Environment.NewLine;
+                textBox1.Text += ("detA = " +  cm.Determ(cm.ULGetter) + Environment.NewLine);
+                // textBox1.Text += ("Вектор b = " + cm.ResultX(cm.MatrixProduct(cm.AGetter, x)) + Environment.NewLine);
+                textBox1.Text += ("Вектор x до = " + cm.ResultX(cm.XGetter)) + Environment.NewLine;
+                cm.XDelta = cm.FindMatrixX(cm.L_Getter, cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter)));
+                textBox1.Text += ("Вектор x после = " + cm.ResultX(cm.XDelta)+ Environment.NewLine);
+                //textBox1.Text += ("Вектор x после = " + cm.ResultX(cm.FindMatrixW(cm.UGetter, cm.MatrixProduct(cm.AGetter, cm.XGetter))));
 
+
+                // textBox1.Text += ("U = \r\n" + cm.Result(cm.UGetter) + Environment.NewLine + "L_ = \r\n" + cm.Result(cm.L_Getter));
+                textBox1.Text += ("Обратная матрица = " + Environment.NewLine + cm.Result(cm.Inversion(cm.L_Getter, cm.UGetter)) + Environment.NewLine);
+                // textBox1.Text += ("Проверка " + cm.Result(cm.MatrixProductS(cm.AGetter, cm.Inversion(cm.L_Getter, cm.UGetter))));
+                textBox1.Text += ("Погрешность " + cm.Delta(cm.AGetter, cm.AInverseGetter, cm.IGetter) + '\t');
+                textBox1.Text += ("Погрешность x = " + cm.DeltaX(cm.XDelta, cm.XGetter) + Environment.NewLine);
 
             }
         }
@@ -94,16 +115,13 @@ namespace WindowsFormsApplication6
                 s = fk.DataBuffer;
                 buttonCompute.Enabled = true;
                 textBox1.Text += s;
-
                 textBox1.Text += Environment.NewLine;
-
-                s = s.Replace("\r", "");
-                //s = s.Replace(" ", "");
+                s = s.Replace("\r", "");               
                 String[] S = s.Split('\n');
                
 
 
-                double[,] mas = new double[S.Length, S.Length];
+                 mas = new double[S.Length, S.Length];
                 try
                 {
                     for (int i = 0; i < S.Length; i++)
@@ -119,11 +137,20 @@ namespace WindowsFormsApplication6
             }
                 catch
             {
-                MessageBox.Show("Матрица не квадратная");
+                MessageBox.Show("Ошибка! Проверьте правильность ввода данных");
             }
 
         };
         }
 
+        private void buttonFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
+                using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName )) {
+
+                    sw.Write(textBox1.Text);
+                    MessageBox.Show("Файл успешно сохранен");
+                }
+            } }
     }
 }

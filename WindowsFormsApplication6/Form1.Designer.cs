@@ -38,11 +38,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.buttonInputMatrix = new System.Windows.Forms.Button();
+            this.buttonGraphics = new System.Windows.Forms.Button();
+            this.buttonFile = new System.Windows.Forms.Button();
+            this.radioButtonBadMatrix = new System.Windows.Forms.RadioButton();
+            this.comboBoxBadMatrix = new System.Windows.Forms.ComboBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(37, 161);
+            this.textBox1.Location = new System.Drawing.Point(44, 198);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -67,20 +72,24 @@
             // 
             // buttonCompute
             // 
+            this.buttonCompute.BackColor = System.Drawing.Color.AliceBlue;
+            this.buttonCompute.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonCompute.Enabled = false;
-            this.buttonCompute.Location = new System.Drawing.Point(630, 52);
+            this.buttonCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCompute.Location = new System.Drawing.Point(621, 59);
             this.buttonCompute.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCompute.Name = "buttonCompute";
-            this.buttonCompute.Size = new System.Drawing.Size(214, 70);
+            this.buttonCompute.Size = new System.Drawing.Size(214, 71);
             this.buttonCompute.TabIndex = 3;
             this.buttonCompute.Text = "Compute";
-            this.buttonCompute.UseVisualStyleBackColor = true;
+            this.buttonCompute.UseVisualStyleBackColor = false;
             this.buttonCompute.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // rBkeys
             // 
             this.rBkeys.AutoSize = true;
-            this.rBkeys.BackColor = System.Drawing.SystemColors.Control;
+            this.rBkeys.BackColor = System.Drawing.Color.SkyBlue;
+            this.rBkeys.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rBkeys.Location = new System.Drawing.Point(24, 59);
             this.rBkeys.Name = "rBkeys";
             this.rBkeys.Size = new System.Drawing.Size(125, 21);
@@ -93,6 +102,7 @@
             // rBrand
             // 
             this.rBrand.AutoSize = true;
+            this.rBrand.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rBrand.Location = new System.Drawing.Point(24, 100);
             this.rBrand.Name = "rBrand";
             this.rBrand.Size = new System.Drawing.Size(82, 21);
@@ -139,20 +149,71 @@
             // 
             // buttonInputMatrix
             // 
+            this.buttonInputMatrix.BackColor = System.Drawing.Color.AliceBlue;
+            this.buttonInputMatrix.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonInputMatrix.Enabled = false;
-            this.buttonInputMatrix.Location = new System.Drawing.Point(214, 57);
+            this.buttonInputMatrix.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonInputMatrix.Location = new System.Drawing.Point(230, 51);
             this.buttonInputMatrix.Name = "buttonInputMatrix";
-            this.buttonInputMatrix.Size = new System.Drawing.Size(111, 23);
+            this.buttonInputMatrix.Size = new System.Drawing.Size(195, 37);
             this.buttonInputMatrix.TabIndex = 10;
             this.buttonInputMatrix.Text = "Input Matrix";
-            this.buttonInputMatrix.UseVisualStyleBackColor = true;
+            this.buttonInputMatrix.UseVisualStyleBackColor = false;
             this.buttonInputMatrix.Click += new System.EventHandler(this.buttonInputMatrix_Click);
+            // 
+            // buttonGraphics
+            // 
+            this.buttonGraphics.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGraphics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGraphics.Location = new System.Drawing.Point(143, 574);
+            this.buttonGraphics.Name = "buttonGraphics";
+            this.buttonGraphics.Size = new System.Drawing.Size(261, 33);
+            this.buttonGraphics.TabIndex = 11;
+            this.buttonGraphics.Text = "Построить графики";
+            this.buttonGraphics.UseVisualStyleBackColor = true;
+            // 
+            // buttonFile
+            // 
+            this.buttonFile.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.buttonFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFile.Location = new System.Drawing.Point(578, 574);
+            this.buttonFile.Name = "buttonFile";
+            this.buttonFile.Size = new System.Drawing.Size(257, 33);
+            this.buttonFile.TabIndex = 12;
+            this.buttonFile.Text = "Сохранить в файл";
+            this.buttonFile.UseVisualStyleBackColor = false;
+            this.buttonFile.Click += new System.EventHandler(this.buttonFile_Click);
+            // 
+            // radioButtonBadMatrix
+            // 
+            this.radioButtonBadMatrix.AutoSize = true;
+            this.radioButtonBadMatrix.Location = new System.Drawing.Point(24, 135);
+            this.radioButtonBadMatrix.Name = "radioButtonBadMatrix";
+            this.radioButtonBadMatrix.Size = new System.Drawing.Size(176, 38);
+            this.radioButtonBadMatrix.TabIndex = 13;
+            this.radioButtonBadMatrix.TabStop = true;
+            this.radioButtonBadMatrix.Text = "Плохо обусловленные\r\nматрицы";
+            this.radioButtonBadMatrix.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxBadMatrix
+            // 
+            this.comboBoxBadMatrix.FormattingEnabled = true;
+            this.comboBoxBadMatrix.Location = new System.Drawing.Point(230, 135);
+            this.comboBoxBadMatrix.Name = "comboBoxBadMatrix";
+            this.comboBoxBadMatrix.Size = new System.Drawing.Size(195, 24);
+            this.comboBoxBadMatrix.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 544);
+            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.ClientSize = new System.Drawing.Size(968, 622);
+            this.Controls.Add(this.comboBoxBadMatrix);
+            this.Controls.Add(this.radioButtonBadMatrix);
+            this.Controls.Add(this.buttonFile);
+            this.Controls.Add(this.buttonGraphics);
             this.Controls.Add(this.buttonInputMatrix);
             this.Controls.Add(this.textBoxTo);
             this.Controls.Add(this.label3);
@@ -184,6 +245,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.Button buttonInputMatrix;
+        private System.Windows.Forms.Button buttonGraphics;
+        private System.Windows.Forms.Button buttonFile;
+        private System.Windows.Forms.RadioButton radioButtonBadMatrix;
+        private System.Windows.Forms.ComboBox comboBoxBadMatrix;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

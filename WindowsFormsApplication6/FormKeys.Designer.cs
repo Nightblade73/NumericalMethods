@@ -39,6 +39,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(308, 168);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "2 4 -4 6\r\n1 4 2 1\r\n3 8 1 1\r\n2 5 0 5";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonKeysInput
             // 
