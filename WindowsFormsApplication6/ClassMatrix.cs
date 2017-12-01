@@ -15,7 +15,9 @@ namespace WindowsFormsApplication6
         //                { 3, 8, 1, 1 },
         //                { 2, 5, 0, 5 }};
         double[] x;
-        double[] xDelta;
+        double[] xDefined;
+        double xDelta;
+        double matrixDelta;
         double[,] A;
         double[,] I;
         double[,] UL;
@@ -23,6 +25,7 @@ namespace WindowsFormsApplication6
         double[,] L_;
         int[] q;
         double[,] AInverse;
+        int count = 0;
         public double[,] AGetter
         {
             get { return A; }
@@ -45,7 +48,10 @@ namespace WindowsFormsApplication6
         public double[,] IGetter { get => I; set => I = value; }
         public double[,] AInverseGetter { get => AInverse; set => AInverse = value; }
         public double[] XGetter { get => x; set => x = value; }
-        public double[] XDelta { get => xDelta; set => xDelta = value; }
+        public double[] XDefined { get => xDefined; set => xDefined = value; }
+        public double XDelta { get => xDelta; set => xDelta = value; }
+        public double MatrixDelta { get => matrixDelta; set => matrixDelta = value; }
+        public int Count { get => count; set => count = value; }
 
         public string Randomize(int k)
         {
@@ -96,11 +102,18 @@ namespace WindowsFormsApplication6
             for (int k = n - 1; k >= 0; k--)
             {
                 ChangeRows(k);
-                for (int j = k - 1; j >= 0; j--)
+                for (int j = k - 1; j >= 0; j--) {
                     UL[q[k], j] = UL[q[k], j] / UL[q[k], k];
+                    count++;
+                }
                 for (int i = k - 1; i >= 0; i--)
+                {
                     for (int j = k - 1; j >= 0; j--)
+                    {
                         UL[q[i], j] = UL[q[i], j] - UL[q[i], k] * UL[q[k], j];
+                        count++;
+                    }
+                }
             }
             Divide(UL);
             return Result(UL);

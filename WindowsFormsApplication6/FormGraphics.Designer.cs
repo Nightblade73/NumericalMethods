@@ -46,13 +46,14 @@
             this.chartX.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartX.Legends.Add(legend1);
-            this.chartX.Location = new System.Drawing.Point(54, 72);
+            this.chartX.Location = new System.Drawing.Point(55, 21);
             this.chartX.Name = "chartX";
+            this.chartX.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartX.Series.Add(series1);
-            this.chartX.Size = new System.Drawing.Size(300, 300);
+            this.chartX.Size = new System.Drawing.Size(730, 205);
             this.chartX.TabIndex = 0;
             this.chartX.Text = "chartX";
             // 
@@ -62,25 +63,29 @@
             this.chartMatrix.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chartMatrix.Legends.Add(legend2);
-            this.chartMatrix.Location = new System.Drawing.Point(485, 72);
+            this.chartMatrix.Location = new System.Drawing.Point(55, 247);
             this.chartMatrix.Name = "chartMatrix";
+            this.chartMatrix.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartMatrix.Series.Add(series2);
-            this.chartMatrix.Size = new System.Drawing.Size(300, 300);
+            this.chartMatrix.Size = new System.Drawing.Size(730, 216);
             this.chartMatrix.TabIndex = 1;
             this.chartMatrix.Text = "chartMatrix";
+            this.chartMatrix.Click += new System.EventHandler(this.chartMatrix_Click);
             // 
             // FormGraphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(859, 475);
             this.Controls.Add(this.chartMatrix);
             this.Controls.Add(this.chartX);
             this.Name = "FormGraphics";
             this.Text = "FormGraphics";
+            this.Load += new System.EventHandler(this.FormGraphics_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMatrix)).EndInit();
             this.ResumeLayout(false);

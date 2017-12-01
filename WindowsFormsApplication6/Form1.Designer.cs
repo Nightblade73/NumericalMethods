@@ -43,6 +43,8 @@
             this.radioButtonBadMatrix = new System.Windows.Forms.RadioButton();
             this.comboBoxBadMatrix = new System.Windows.Forms.ComboBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.textBoxArg = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -164,6 +166,7 @@
             // buttonGraphics
             // 
             this.buttonGraphics.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGraphics.Enabled = false;
             this.buttonGraphics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGraphics.Location = new System.Drawing.Point(143, 574);
             this.buttonGraphics.Name = "buttonGraphics";
@@ -171,6 +174,7 @@
             this.buttonGraphics.TabIndex = 11;
             this.buttonGraphics.Text = "Построить графики";
             this.buttonGraphics.UseVisualStyleBackColor = true;
+            this.buttonGraphics.Click += new System.EventHandler(this.buttonGraphics_Click);
             // 
             // buttonFile
             // 
@@ -195,14 +199,45 @@
             this.radioButtonBadMatrix.TabStop = true;
             this.radioButtonBadMatrix.Text = "Плохо обусловленные\r\nматрицы";
             this.radioButtonBadMatrix.UseVisualStyleBackColor = true;
+            this.radioButtonBadMatrix.CheckedChanged += new System.EventHandler(this.radioButtonBadMatrix_CheckedChanged);
             // 
             // comboBoxBadMatrix
             // 
             this.comboBoxBadMatrix.FormattingEnabled = true;
+            this.comboBoxBadMatrix.Items.AddRange(new object[] {
+            "Матрица Гильберта",
+            "Матрица 1",
+            "Матрица 2",
+            "Матрица 3",
+            "Матрица 4",
+            "Матрица 5",
+            "Матрица 6",
+            "Матрица 7",
+            "Матрица 8",
+            "Матрица 9"});
             this.comboBoxBadMatrix.Location = new System.Drawing.Point(230, 135);
             this.comboBoxBadMatrix.Name = "comboBoxBadMatrix";
             this.comboBoxBadMatrix.Size = new System.Drawing.Size(195, 24);
             this.comboBoxBadMatrix.TabIndex = 14;
+            this.comboBoxBadMatrix.SelectedIndexChanged += new System.EventHandler(this.comboBoxBadMatrix_SelectedIndexChanged);
+            // 
+            // textBoxArg
+            // 
+            this.textBoxArg.Enabled = false;
+            this.textBoxArg.Location = new System.Drawing.Point(359, 165);
+            this.textBoxArg.Name = "textBoxArg";
+            this.textBoxArg.Size = new System.Drawing.Size(66, 22);
+            this.textBoxArg.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(284, 168);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 17);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Аргумент";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // Form1
             // 
@@ -210,6 +245,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(968, 622);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxArg);
             this.Controls.Add(this.comboBoxBadMatrix);
             this.Controls.Add(this.radioButtonBadMatrix);
             this.Controls.Add(this.buttonFile);
@@ -250,6 +287,8 @@
         private System.Windows.Forms.RadioButton radioButtonBadMatrix;
         private System.Windows.Forms.ComboBox comboBoxBadMatrix;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TextBox textBoxArg;
+        private System.Windows.Forms.Label label4;
     }
 }
 
